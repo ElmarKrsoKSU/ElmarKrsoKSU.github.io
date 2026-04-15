@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="quiz.html">Quiz</a>
+</nav>
+
+<h1>Self-Assessment Quiz</h1>
+
+<form id="quizForm">
+
+    <p>1. Bubble sort has a time complexity of ______.</p>
+    <input type="text" id="q1"><br><br>
+
+    <p>2. What does CSS stand for?</p>
+    <input type="radio" name="q2" value="a"> Computer Style Sheets<br>
+    <input type="radio" name="q2" value="b"> Cascading Style Sheets<br>
+    <input type="radio" name="q2" value="c"> Creative Style System<br><br>
+
+    <p>3. Which tag is used for JavaScript?</p>
+    <input type="radio" name="q3" value="a"> &lt;js&gt;<br>
+    <input type="radio" name="q3" value="b"> &lt;script&gt;<br>
+    <input type="radio" name="q3" value="c"> &lt;javascript&gt;<br><br>
+
+    <p>4. Which is used for styling?</p>
+    <input type="radio" name="q4" value="a"> HTML<br>
+    <input type="radio" name="q4" value="b"> CSS<br>
+    <input type="radio" name="q4" value="c"> Java<br><br>
+
+    <p>5. Select programming languages:</p>
+    <input type="checkbox" name="q5" value="JavaScript"> JavaScript<br>
+    <input type="checkbox" name="q5" value="HTML"> HTML<br>
+    <input type="checkbox" name="q5" value="Python"> Python<br>
+    <input type="checkbox" name="q5" value="CSS"> CSS<br><br>
+
+    <button type="button" onclick="submitQuiz()">Submit</button>
+    <button type="button" onclick="resetQuiz()">Reset</button>
+
+</form>
+
+<div id="results"></div>
+
+<script src="quiz.js"></script>
+
+</body>
+</html>
