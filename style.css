@@ -1,89 +1,140 @@
+/* Global */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #f0f4ff, #e6ecff);
+    background: linear-gradient(135deg, #eef2ff, #dbe4ff);
     margin: 0;
     padding: 20px;
+    color: #1f2937;
+}
+
+/* Page Title */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 /* Container */
 form {
-    max-width: 650px;
+    max-width: 700px;
     margin: 40px auto;
-    padding: 25px 30px;
+    padding: 30px 35px;
     background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
-/* Questions */
+/* Question blocks */
 form p {
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 /* Inputs */
 input[type="text"] {
     width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
     margin-bottom: 15px;
-    transition: border 0.2s;
+    font-size: 14px;
+    transition: all 0.2s ease;
 }
 
 input[type="text"]:focus {
     border-color: #4a6cff;
+    box-shadow: 0 0 0 3px rgba(74, 108, 255, 0.15);
     outline: none;
 }
 
-/* Radio + checkbox spacing */
+/* Options (radio/checkbox labels look cleaner inline) */
 input[type="radio"],
 input[type="checkbox"] {
     margin-right: 8px;
-    margin-top: 5px;
+    transform: scale(1.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+    cursor: pointer;
 }
 
 /* Buttons */
 button {
-    padding: 10px 18px;
-    margin: 10px 5px 0 0;
+    padding: 11px 20px;
+    margin: 15px 10px 0 0;
     border: none;
-    border-radius: 8px;
-    background: #4a6cff;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #4a6cff, #6a85ff);
     color: white;
     font-weight: 600;
+    font-size: 14px;
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(74, 108, 255, 0.2);
 }
 
 button:hover {
-    background: #2f4be0;
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, #2f4be0, #4a6cff);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(74, 108, 255, 0.25);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(74, 108, 255, 0.2);
 }
 
 /* Results box */
 #results {
-    max-width: 650px;
-    margin: 20px auto;
-    padding: 20px;
-    border-radius: 12px;
+    max-width: 700px;
+    margin: 25px auto;
+    padding: 25px;
+    border-radius: 16px;
     background: #ffffff;
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+    border: 1px solid rgba(0, 0, 0, 0.04);
 }
 
 /* Pass / Fail */
 #results h2 {
     margin-top: 0;
-    font-size: 26px;
+    font-size: 28px;
+    font-weight: 700;
 }
 
-/* Correct / Incorrect text */
+/* Score text */
+#results p {
+    margin: 6px 0;
+}
+
+/* Correct / Incorrect */
 .correct {
-    color: #1a7f37;
+    color: #15803d;
     font-weight: 600;
 }
 
 .incorrect {
-    color: #d93025;
+    color: #dc2626;
     font-weight: 600;
+}
+
+/* Subtle animation */
+#results {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
