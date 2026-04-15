@@ -1,36 +1,121 @@
 <!DOCTYPE html>
-<html>
-<!-- This is the head -->
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Key Concepts</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<!-- This is the body -->
+
 <body>
-<!-- This is the header -->
+
 <header>
-    <!-- This is the nav bar -->
-    <h1>Key Concepts</h1>
+    <h1>Key Concepts of Web Servers</h1>
     <nav>
         <a href="index.html">Home</a>
         <a href="topic1.html">History</a>
         <a href="topic2.html">Modern Servers</a>
-        <a href="concepts.html">Key Concepts</a>
+        <a href="concepts.html" class="active">Key Concepts</a>
+        <a href="quiz.html">Quiz</a>
         <a href="references.html">References</a>
         <a href="about.html">About</a>
     </nav>
 </header>
-<!-- This is the body of the page with a list -->
+
 <main>
-    <ul>
-        <li><strong>HTTP:</strong> Protocol used for communication on the web.</li>
-        <li><strong>Caching:</strong> Storing data for faster access.</li>
-        <li><strong>NGINX:</strong> High-performance web server.</li>
-        <li><strong>Cloud Computing:</strong> Hosting servers online.</li>
-        <li><strong>Encryption:</strong> Securing data with HTTPS.</li>
-    </ul>
+
+    <h2>HTTP (HyperText Transfer Protocol)</h2>
+    <p>
+        HTTP is the foundation of communication on the web. It is a protocol that allows web browsers (clients) to request
+        resources from web servers. When you enter a URL into your browser, an HTTP request is sent to a server, which then
+        responds with the requested content such as HTML pages, images, or data.
+    </p>
+    <p>
+        HTTP is stateless, meaning each request is independent and does not remember previous interactions. This is why
+        technologies like cookies and sessions are used to maintain user data across requests.
+    </p>
+
+    <h2>HTTPS and Encryption</h2>
+    <p>
+        HTTPS is the secure version of HTTP. It uses encryption protocols such as SSL/TLS to protect data transmitted
+        between the client and server. This ensures that sensitive information like passwords, credit card numbers,
+        and personal data cannot be intercepted by attackers.
+    </p>
+    <p>
+        Encryption is essential for modern websites, especially those that handle user authentication or financial
+        transactions. Most modern browsers now warn users when a site does not use HTTPS.
+    </p>
+
+    <h2>Caching</h2>
+    <p>
+        Caching is a technique used to store frequently accessed data so that it can be delivered more quickly. Instead
+        of generating the same response repeatedly, a server can store a cached version and serve it instantly.
+    </p>
+    <p>
+        There are multiple types of caching, including browser caching, server-side caching, and content delivery
+        network (CDN) caching. Caching significantly improves performance and reduces server load.
+    </p>
+
+    <h2>NGINX</h2>
+    <p>
+        NGINX is a high-performance web server known for its ability to handle a large number of concurrent connections.
+        Unlike traditional servers like Apache, NGINX uses an event-driven, asynchronous architecture, which makes it
+        more efficient and scalable.
+    </p>
+    <p>
+        NGINX is often used as a reverse proxy and load balancer, helping distribute traffic across multiple servers to
+        improve reliability and performance.
+    </p>
+
+    <h2>Apache</h2>
+    <p>
+        Apache is one of the oldest and most widely used web servers. It uses a process-based model and supports a wide
+        range of modules that extend its functionality. Apache is known for its flexibility and ease of configuration.
+    </p>
+    <p>
+        However, Apache can consume more resources under heavy traffic compared to newer solutions like NGINX, which is
+        why many modern systems use a combination of both.
+    </p>
+
+    <h2>Cloud Computing</h2>
+    <p>
+        Cloud computing allows web servers to be hosted on remote infrastructure instead of physical machines. Services
+        like AWS, Microsoft Azure, and Google Cloud provide scalable environments where resources can be adjusted based
+        on demand.
+    </p>
+    <p>
+        This allows websites to handle sudden increases in traffic without crashing and reduces the need for maintaining
+        physical hardware.
+    </p>
+
+    <h2>Load Balancing</h2>
+    <p>
+        Load balancing is the process of distributing incoming network traffic across multiple servers. This ensures that
+        no single server becomes overloaded, improving performance and reliability.
+    </p>
+    <p>
+        Load balancers can detect server failures and redirect traffic to healthy servers, making systems more fault-tolerant.
+    </p>
+
+    <h2>Scalability</h2>
+    <p>
+        Scalability refers to a system's ability to handle increased traffic or workload. There are two main types:
+        vertical scaling (adding more power to a single server) and horizontal scaling (adding more servers).
+    </p>
+    <p>
+        Modern web applications rely heavily on horizontal scaling to support millions of users efficiently.
+    </p>
+
+    <h2>Content Delivery Networks (CDNs)</h2>
+    <p>
+        CDNs are networks of servers distributed around the world that deliver content to users based on their geographic
+        location. This reduces latency and improves load times.
+    </p>
+    <p>
+        Popular CDNs include Cloudflare and Akamai, which help speed up websites and provide additional security features.
+    </p>
+
 </main>
-<!-- This is the footer -->
+
 <footer>
     <p>This is a class project for IT3203</p>
     <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
