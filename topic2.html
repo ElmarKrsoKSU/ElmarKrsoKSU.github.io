@@ -1,64 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- This is the head -->
 <head>
     <meta charset="UTF-8">
     <title>Modern Web Servers</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<!-- This is the body -->
+
 <body>
-<!-- This is the header with the nav bar -->
+
 <header>
-    <h1>Modern Web Servers & Future</h1>
+    <h1>Modern Web Servers & The Future</h1>
     <nav>
         <a href="index.html">Home</a>
         <a href="topic1.html">History</a>
-        <a href="topic2.html">Modern Servers</a>
+        <a href="topic2.html" class="active">Modern Servers</a>
         <a href="concepts.html">Key Concepts</a>
         <a href="quiz.html">Quiz</a>
         <a href="references.html">References</a>
         <a href="about.html">About</a>
     </nav>
 </header>
-<!-- This is the main body -->
+
 <main>
+
+    <!-- INTRO -->
+    <h2>Introduction</h2>
     <p>
-        Modern web servers are much more advanced than early systems. Technologies like NGINX introduced
-        asynchronous and event-driven architectures, allowing servers to handle thousands of connections efficiently.
+        Modern web servers have evolved significantly from early systems that only delivered static content. Today’s
+        servers are designed to handle millions of users, process dynamic applications, and operate efficiently in
+        distributed environments. Performance, scalability, and security are now the primary focus of modern web server
+        architecture.
+    </p>
+
+    <!-- NGINX & PERFORMANCE -->
+    <h2>High-Performance Architecture</h2>
+    <p>
+        One of the biggest advancements in modern web servers is the shift from process-based models to event-driven,
+        asynchronous architectures. Servers like NGINX use this approach to handle thousands of simultaneous connections
+        using fewer resources.
     </p>
 
     <p>
-        Today, most web servers operate in cloud environments. Platforms like AWS allow companies to quickly scale
-        their infrastructure without relying on physical hardware.
+        This design allows servers to remain responsive even under heavy traffic, making them ideal for high-demand
+        applications such as streaming platforms, online stores, and social media websites.
+    </p>
+
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="NGINX Logo">
+
+    <!-- CLOUD -->
+    <h2>Cloud Computing</h2>
+    <p>
+        Modern web servers are commonly hosted in cloud environments rather than on physical machines. Cloud platforms
+        such as Amazon Web Services (AWS), Microsoft Azure, and Google Cloud provide scalable infrastructure that can
+        grow or shrink based on demand.
     </p>
 
     <p>
-        Web servers now include features such as caching, compression, encryption (HTTPS), and load balancing.
-        These improvements help increase performance and security.
+        This flexibility allows companies to handle traffic spikes without downtime and reduces the cost of maintaining
+        physical hardware. Cloud-based servers also support global deployment, improving performance for users worldwide.
     </p>
 
-    <p>
-        Looking ahead, technologies such as HTTP/3 and QUIC aim to reduce latency and improve reliability. Edge
-        computing and serverless architectures are also shaping the future of web development.
-    </p>
-<!-- This is the table -->
-    <table border="1">
+    <img src="https://media.istockphoto.com/id/1303503667/photo/cloud-computing-technology.jpg" alt="Cloud Computing">
+
+    <!-- FEATURES -->
+    <h2>Key Features of Modern Web Servers</h2>
+    <ul>
+        <li><strong>Caching:</strong> Stores frequently accessed data to improve speed and reduce server load.</li>
+        <li><strong>Load Balancing:</strong> Distributes traffic across multiple servers to prevent overload.</li>
+        <li><strong>Compression:</strong> Reduces file sizes to improve load times.</li>
+        <li><strong>HTTPS Encryption:</strong> Secures communication between users and servers.</li>
+        <li><strong>Reverse Proxy:</strong> Routes requests and improves security and performance.</li>
+    </ul>
+
+    <!-- COMPARISON TABLE -->
+    <h2>Comparison of Popular Web Servers</h2>
+    <table>
         <tr>
             <th>Server</th>
-            <th>Feature</th>
+            <th>Architecture</th>
+            <th>Strength</th>
         </tr>
         <tr>
             <td>Apache</td>
-            <td>Modular</td>
+            <td>Process-Based</td>
+            <td>Flexible and customizable</td>
         </tr>
         <tr>
             <td>NGINX</td>
-            <td>High Performance</td>
+            <td>Event-Driven</td>
+            <td>High performance and scalability</td>
+        </tr>
+        <tr>
+            <td>LiteSpeed</td>
+            <td>Event-Driven</td>
+            <td>Fast and efficient for high traffic</td>
         </tr>
     </table>
+
+    <!-- FUTURE -->
+    <h2>The Future of Web Servers</h2>
+    <p>
+        The future of web servers is focused on improving speed, efficiency, and global accessibility. New technologies
+        such as HTTP/3 and QUIC are designed to reduce latency and improve connection reliability.
+    </p>
+
+    <p>
+        Edge computing is another major trend, where servers are placed closer to users to reduce response times.
+        This is especially important for applications that require real-time performance, such as gaming and streaming.
+    </p>
+
+    <p>
+        Serverless computing is also becoming more popular. In this model, developers do not manage servers directly.
+        Instead, cloud providers automatically handle infrastructure, allowing developers to focus on writing code.
+    </p>
+
+    <!-- CONCLUSION -->
+    <h2>Conclusion</h2>
+    <p>
+        Modern web servers are powerful, scalable, and essential for today’s internet. With continuous advancements in
+        cloud computing, networking, and performance optimization, web servers will continue to evolve to meet the
+        growing demands of users and applications worldwide.
+    </p>
+
 </main>
-<!-- This is the required footer -->
+
 <footer>
     <p>This is a class project for IT3203</p>
     <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
