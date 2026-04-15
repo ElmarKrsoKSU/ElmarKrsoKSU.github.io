@@ -1,18 +1,32 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #eef2ff, #dbe4ff);
+    color: #1f2937;
+}
+
 /* ===== HEADER ===== */
 header {
     background: #ffffff;
-    padding: 20px 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
+    padding: 20px 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 /* Title */
 header h1 {
     text-align: center;
-    margin: 0;
+    margin-bottom: 15px;
     font-size: 28px;
-    font-weight: 700;
-    color: #1f2937;
 }
 
 /* ===== NAVBAR ===== */
@@ -21,28 +35,27 @@ nav {
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 15px;
 }
 
 /* Nav links */
 nav a {
     text-decoration: none;
     padding: 10px 16px;
-    border-radius: 8px;
     background: #f3f4f6;
-    color: #374151;
+    border-radius: 8px;
     font-weight: 600;
+    color: #374151;
     transition: all 0.2s ease;
 }
 
-/* Hover effect */
+/* Hover */
 nav a:hover {
     background: #4a6cff;
-    color: #ffffff;
-    transform: translateY(-1px);
+    color: white;
+    transform: translateY(-2px);
 }
 
-/* Active page (optional if you add class="active") */
+/* Active page */
 nav a.active {
     background: #4a6cff;
     color: white;
@@ -50,48 +63,122 @@ nav a.active {
 
 /* ===== MAIN CONTENT ===== */
 main {
-    max-width: 800px;
-    margin: auto;
-    background: #ffffff;
+    max-width: 850px;
+    margin: 30px auto;
     padding: 25px 30px;
+    background: white;
     border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
-/* Text spacing */
-main p {
+/* Headings */
+h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Paragraph spacing */
+p {
     line-height: 1.6;
+    margin-bottom: 15px;
 }
 
 /* Lists */
 ul {
-    padding-left: 20px;
+    margin-left: 20px;
+    margin-bottom: 15px;
 }
 
 /* Images */
 img {
     width: 100%;
     border-radius: 10px;
+    margin: 15px 0;
+}
+
+/* ===== QUIZ FORM ===== */
+form {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+/* Questions */
+form p {
+    font-weight: 600;
     margin-top: 15px;
+}
+
+/* Text input */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* Radio & checkbox */
+input[type="radio"],
+input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+/* Buttons */
+button {
+    padding: 10px 15px;
+    margin-top: 15px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4a6cff;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #2f4be0;
+}
+
+/* ===== RESULTS ===== */
+#results {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+/* Correct / Incorrect */
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: red;
+    font-weight: bold;
 }
 
 /* ===== FOOTER ===== */
 footer {
     text-align: center;
-    margin-top: 30px;
+    margin: 30px auto;
     padding: 15px;
     background: #f3f4f6;
     border-radius: 10px;
-    font-size: 14px;
+    max-width: 850px;
 }
 
-/* Footer link */
 footer a {
     color: #4a6cff;
     text-decoration: none;
     font-weight: 600;
-}
-
-footer a:hover {
-    text-decoration: underline;
 }
