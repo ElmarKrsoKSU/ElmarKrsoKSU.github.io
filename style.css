@@ -1,140 +1,97 @@
-/* Global */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #eef2ff, #dbe4ff);
+/* ===== HEADER ===== */
+header {
+    background: #ffffff;
+    padding: 20px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+}
+
+/* Title */
+header h1 {
+    text-align: center;
     margin: 0;
-    padding: 20px;
+    font-size: 28px;
+    font-weight: 700;
     color: #1f2937;
 }
 
-/* Page Title */
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
+/* ===== NAVBAR ===== */
+nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
 }
 
-/* Container */
-form {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 30px 35px;
-    background: #ffffff;
-    border-radius: 16px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-}
-
-/* Question blocks */
-form p {
+/* Nav links */
+nav a {
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    background: #f3f4f6;
+    color: #374151;
     font-weight: 600;
-    margin-bottom: 10px;
-    margin-top: 20px;
-}
-
-/* Inputs */
-input[type="text"] {
-    width: 100%;
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #d1d5db;
-    margin-bottom: 15px;
-    font-size: 14px;
     transition: all 0.2s ease;
 }
 
-input[type="text"]:focus {
-    border-color: #4a6cff;
-    box-shadow: 0 0 0 3px rgba(74, 108, 255, 0.15);
-    outline: none;
+/* Hover effect */
+nav a:hover {
+    background: #4a6cff;
+    color: #ffffff;
+    transform: translateY(-1px);
 }
 
-/* Options (radio/checkbox labels look cleaner inline) */
-input[type="radio"],
-input[type="checkbox"] {
-    margin-right: 8px;
-    transform: scale(1.1);
-}
-
-label {
-    display: block;
-    margin-bottom: 6px;
-    cursor: pointer;
-}
-
-/* Buttons */
-button {
-    padding: 11px 20px;
-    margin: 15px 10px 0 0;
-    border: none;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #4a6cff, #6a85ff);
+/* Active page (optional if you add class="active") */
+nav a.active {
+    background: #4a6cff;
     color: white;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 10px rgba(74, 108, 255, 0.2);
 }
 
-button:hover {
-    background: linear-gradient(135deg, #2f4be0, #4a6cff);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 14px rgba(74, 108, 255, 0.25);
-}
-
-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(74, 108, 255, 0.2);
-}
-
-/* Results box */
-#results {
-    max-width: 700px;
-    margin: 25px auto;
-    padding: 25px;
-    border-radius: 16px;
+/* ===== MAIN CONTENT ===== */
+main {
+    max-width: 800px;
+    margin: auto;
     background: #ffffff;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
-    border: 1px solid rgba(0, 0, 0, 0.04);
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
-/* Pass / Fail */
-#results h2 {
-    margin-top: 0;
-    font-size: 28px;
-    font-weight: 700;
+/* Text spacing */
+main p {
+    line-height: 1.6;
 }
 
-/* Score text */
-#results p {
-    margin: 6px 0;
+/* Lists */
+ul {
+    padding-left: 20px;
 }
 
-/* Correct / Incorrect */
-.correct {
-    color: #15803d;
+/* Images */
+img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px;
+    background: #f3f4f6;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* Footer link */
+footer a {
+    color: #4a6cff;
+    text-decoration: none;
     font-weight: 600;
 }
 
-.incorrect {
-    color: #dc2626;
-    font-weight: 600;
-}
-
-/* Subtle animation */
-#results {
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+footer a:hover {
+    text-decoration: underline;
 }
