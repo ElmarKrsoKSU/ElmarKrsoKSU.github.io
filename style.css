@@ -1,187 +1,913 @@
-/* ===== RESET ===== */
-* {
+/* Sorry for the length of this file, some of these come from my professional locker at work */
+
+/* Pulling in two fonts from Google Fonts:
+   Syne for headings (bold and modern looking)
+   DM Sans for body text (clean and easy to read) */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+/* CSS custom properties (variables) - keeping all colors and sizes in one place
+   so its easy to update the whole theme at once */
+:root {
+    /* background colors - going from darkest to slightly lighter */
+    --bg        : #080c12;
+    --bg-2      : #0d1420;
+    --bg-3      : #111827;
+    /* slightly transparent white overlays used on cards and hover states */
+    --surface   : rgba(255,255,255,0.04);
+    --surface-hv: rgba(255,255,255,0.07);
+    /* border colors - very subtle by default, teal on hover */
+    --border    : rgba(255,255,255,0.08);
+    --border-hv : rgba(0,220,200,0.35);
+    /* the main accent color and a dimmed version for backgrounds */
+    --accent    : #00dcc8;
+    --accent-dim: rgba(0,220,200,0.12);
+    --accent-2  : #3b82f6;  /* secondary blue, used in gradients */
+    /* text colors from bright to nearly invisible */
+    --text      : #e8edf5;
+    --text-muted: #7a8599;
+    --text-faint: #3d4a60;
+    --white     : #ffffff;
+    /* green for pass, red for fail on the quiz */
+    --pass      : #10b981;
+    --fail      : #ef4444;
+    /* border radius values I reuse a lot */
+    --radius    : 12px;
+    --radius-lg : 18px;
+    /* smooth transition timing for hover effects */
+    --transition: 0.22s cubic-bezier(0.4,0,0.2,1);
+    /* glow effect uses the accent color, shadow is just a dark drop shadow */
+    --glow      : 0 0 28px rgba(0,220,200,0.18);
+    --shadow    : 0 8px 32px rgba(0,0,0,0.45);
+    /* max content width and header height */
+    --max-w     : 900px;
+    --header-h  : 68px;
+}
+
+/* Basic reset so browsers don't add weird default margins/padding */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* ===== BODY ===== */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #eef2ff, #dbe4ff);
-    color: #1f2937;
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
 }
 
-/* ===== HEADER ===== */
+body {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.75;
+    background-color: var(--bg);
+    /* Subtle dot-grid texture — adds depth without noise */
+    background-image:
+        radial-gradient(rgba(0,220,200,0.07) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--text);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar styling - makes it thinner and matches the dark theme */
+::-webkit-scrollbar          { width: 5px; }
+::-webkit-scrollbar-track    { background: var(--bg); }
+::-webkit-scrollbar-thumb    { background: var(--text-faint); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* Color when you highlight text - uses a semi-transparent teal */
+::selection { background: rgba(0,220,200,0.25); color: var(--white); }
+
+/* Sticky header - stays at the top when you scroll
+   Uses a blur effect (backdrop-filter) to look frosted glass-ish */
 header {
-    background: #ffffff;
-    padding: 20px 10px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
+    height: var(--header-h);
+    background: rgba(8,12,18,0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 clamp(16px, 4vw, 52px);
 }
 
-/* Title */
-header h1 {
-    text-align: center;
-    margin-bottom: 15px;
-    font-size: 28px;
+/* Flex row inside the header to put logo on left, nav on right */
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 100%;
+    gap: 20px;
 }
 
-/* ===== NAVBAR ===== */
+/* The Elmar | KSU logo text in the top left */
+.site-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(12px, 1.4vw, 15px);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.site-logo .sep  { color: var(--text-faint); margin: 0 5px; }
+.site-logo .org  { color: var(--accent); }
+
+/* Navigation links across the top on desktop */
 nav {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
+    align-items: center;
+    gap: 2px;
+    flex-wrap: nowrap;
 }
 
-/* Nav links */
 nav a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
     text-decoration: none;
-    padding: 10px 16px;
-    background: #f3f4f6;
+    padding: 6px 12px;
     border-radius: 8px;
-    font-weight: 600;
-    color: #374151;
-    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    transition: color var(--transition), background var(--transition), border-color var(--transition);
+    white-space: nowrap;
 }
 
-/* Hover */
 nav a:hover {
-    background: #4a6cff;
-    color: white;
-    transform: translateY(-2px);
+    color: var(--white);
+    background: var(--surface-hv);
+    border-color: var(--border);
 }
 
-/* Active page */
 nav a.active {
-    background: #4a6cff;
-    color: white;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-color: rgba(0,220,200,0.22);
+    font-weight: 600;
 }
 
-/* ===== MAIN CONTENT ===== */
+/* The three-line menu button - only shows up on mobile */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-muted);
+    border-radius: 2px;
+    transition: all 0.25s ease;
+}
+
+/* When the menu is open, rotate the bars into an X shape */
+.menu-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* The dropdown menu on mobile - hidden by default, slides in when opened */
+.mobile-nav {
+    display: none; /* shown only on mobile */
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    background: rgba(8,12,18,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 20px 24px;
+    z-index: 999;
+    flex-direction: column;
+    gap: 4px;
+    /* Slide-in animation */
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.mobile-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.mobile-nav a {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    transition: color var(--transition), background var(--transition);
+    display: block;
+}
+
+.mobile-nav a:hover { color: var(--white); background: var(--surface-hv); }
+
+.mobile-nav a.active {
+    color: var(--accent);
+    background: var(--accent-dim);
+    border-color: rgba(0,220,200,0.22);
+    font-weight: 600;
+}
+
+/* Centers the main content and adds padding on the sides */
 main {
-    max-width: 850px;
-    margin: 30px auto;
-    padding: 25px 30px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: clamp(36px, 6vw, 72px) clamp(16px, 4vw, 36px);
 }
 
-/* Headings */
+/* h2 headings - each one has a small teal bar on the left side */
 h2 {
-    margin-top: 20px;
-    margin-bottom: 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(18px, 2.4vw, 24px);
+    font-weight: 700;
+    color: var(--white);
+    margin-top: 56px;
+    margin-bottom: 14px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-/* Paragraph spacing */
+/* This generates the little colored bar to the left of each section title */
+h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    min-width: 4px;
+    height: 1.1em;
+    background: linear-gradient(180deg, var(--accent), var(--accent-2));
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+main > h2:first-child { margin-top: 0; }
+
+h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+/* Regular paragraph text and inline formatting (bold, italic, links, code) */
 p {
-    line-height: 1.6;
-    margin-bottom: 15px;
+    font-size: 15.5px;
+    font-weight: 300;
+    color: var(--text);
+    margin-bottom: 18px;
+    line-height: 1.8;
 }
 
-/* Lists */
-ul {
-    margin-left: 20px;
-    margin-bottom: 15px;
+p strong { color: var(--white); font-weight: 600; }
+p em     { color: var(--accent); font-style: italic; }
+
+/* Links inside paragraphs and list items */
+main p a, main li a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,220,200,0.3);
+    transition: color var(--transition), border-color var(--transition);
 }
 
-/* Images */
+main p a:hover, main li a:hover {
+    color: var(--white);
+    border-bottom-color: var(--white);
+}
+
+code {
+    font-family: 'Fira Code', 'Courier New', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,220,200,0.18);
+    border-radius: 5px;
+    padding: 1px 7px;
+}
+
+/* Image styles - two layouts: full-width across the content, or floated inline */
+
+/* Default image style - spans the full content width with a subtle border */
 img {
     display: block;
-    max-width: 500px;   /* controls size */
     width: 100%;
-    height: auto;
-    margin: 15px auto;
-    border-radius: 10px;
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    margin: 28px 0;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
 }
 
-/* ===== QUIZ FORM ===== */
-form {
-    max-width: 700px;
-    margin: 30px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+img:hover {
+    box-shadow: var(--glow), var(--shadow);
+    border-color: rgba(0,220,200,0.25);
+    transform: scale(1.005);
 }
 
-/* Questions */
-form p {
-    font-weight: 600;
-    margin-top: 15px;
+/* .img-inline floats to the right so text wraps around it */
+.img-inline {
+    float: right;
+    width: 220px;
+    max-height: 150px;
+    object-fit: contain;
+    margin: 4px 0 16px 24px;
+    border-radius: var(--radius);
+    background: var(--bg-2);
+    padding: 12px;
+    box-shadow: none;
+    transform: none;
 }
 
-/* Text input */
-input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-top: 5px;
-    margin-bottom: 10px;
-}
+.img-inline:hover { transform: none; box-shadow: var(--glow); }
 
-/* Radio & checkbox */
-input[type="radio"],
-input[type="checkbox"] {
-    margin-right: 8px;
-}
-
-/* Buttons */
-button {
-    padding: 10px 15px;
-    margin-top: 15px;
-    margin-right: 10px;
+/* .img-logo is for server logos - small and no border */
+.img-logo {
+    display: inline-block;
+    width: auto;
+    max-width: 160px;
+    max-height: 56px;
+    object-fit: contain;
+    margin: 0 0 20px 0;
     border: none;
-    border-radius: 8px;
-    background: #4a6cff;
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    border-radius: 0;
+    filter: brightness(0.95) saturate(0.8);
 }
 
-button:hover {
-    background: #2f4be0;
+.img-logo:hover { transform: none; box-shadow: none; filter: brightness(1) saturate(1); }
+
+/* .clearfix makes sure content below a float doesnt get messed up */
+.clearfix::after { content: ''; display: table; clear: both; }
+
+/* Custom list styling - each item is a card with a teal arrow bullet */
+ul, ol {
+    margin: 0 0 24px 0;
+    padding: 0;
+    list-style: none;
 }
 
-/* ===== RESULTS ===== */
-#results {
-    max-width: 700px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+ul li, ol li {
+    position: relative;
+    padding: 11px 16px 11px 44px;
+    margin-bottom: 7px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.65;
+    transition: background var(--transition), border-color var(--transition);
 }
 
-/* Correct / Incorrect */
-.correct {
-    color: green;
-    font-weight: bold;
+ul li:hover, ol li:hover {
+    background: var(--surface-hv);
+    border-color: var(--border-hv);
 }
 
-.incorrect {
-    color: red;
-    font-weight: bold;
+/* The little teal arrow that shows up before each list item */
+ul li::before {
+    content: '▸';
+    position: absolute;
+    left: 16px;
+    top: 11px;
+    color: var(--accent);
+    font-size: 12px;
+    line-height: 1.65;
 }
 
-/* ===== FOOTER ===== */
+/* For ordered lists, replace default numbers with styled teal badges */
+ol { counter-reset: ol-counter; }
+ol li { counter-increment: ol-counter; }
+ol li::before {
+    content: counter(ol-counter);
+    position: absolute;
+    left: 12px;
+    top: 10px;
+    width: 22px;
+    height: 22px;
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,220,200,0.25);
+    border-radius: 6px;
+    color: var(--accent);
+    font-size: 11px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+ul li strong, ol li strong { color: var(--white); font-weight: 600; }
+
+/* Table styling - wrap every table in a .table-wrap div so it scrolls sideways on small screens */
+.table-wrap {
+    width: 100%;
+    overflow-x: auto; /* scroll sideways on mobile so the table doesnt break the layout */
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    margin: 28px 0;
+}
+
+table {
+    width: 100%;
+    min-width: 480px; /* keep columns from getting too squished */
+    border-collapse: collapse;
+    background: var(--bg-2);
+    font-size: 14px;
+}
+
+table th {
+    font-family: 'Syne', sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--accent);
+    background: rgba(0,220,200,0.06);
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    white-space: nowrap;
+}
+
+table td {
+    padding: 12px 18px;
+    color: var(--text);
+    font-weight: 300;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+table tr:last-child td { border-bottom: none; }
+table tr:hover td       { background: var(--surface); }
+
+/* Footer at the bottom - centered text, slightly lighter background */
 footer {
     text-align: center;
-    margin: 30px auto;
-    padding: 15px;
-    background: #f3f4f6;
-    border-radius: 10px;
-    max-width: 850px;
+    padding: 32px 20px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-2);
+    color: var(--text-faint);
+    font-size: 13px;
+    font-weight: 300;
 }
 
+footer p { margin-bottom: 6px; color: var(--text-faint); }
+
 footer a {
-    color: #4a6cff;
+    color: var(--accent);
     text-decoration: none;
-    font-weight: 600;
+    border-bottom: 1px solid rgba(0,220,200,0.28);
+    transition: color var(--transition), border-color var(--transition);
 }
+
+footer a:hover { color: var(--white); border-bottom-color: var(--white); }
+
+/* Big banner at the top of the quiz page */
+.quiz-hero {
+    background: linear-gradient(135deg,
+        rgba(0,220,200,0.10) 0%,
+        rgba(59,130,246,0.10) 100%);
+    border: 1px solid rgba(0,220,200,0.18);
+    border-radius: var(--radius-lg);
+    padding: 40px 32px 32px;
+    margin-bottom: 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Two glowing circles in the corners of the hero banner using pseudo-elements */
+.quiz-hero::before,
+.quiz-hero::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+.quiz-hero::before {
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, rgba(0,220,200,0.10) 0%, transparent 70%);
+    top: -60px; right: -60px;
+}
+.quiz-hero::after {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(59,130,246,0.09) 0%, transparent 70%);
+    bottom: -70px; left: -40px;
+}
+
+.quiz-hero h2 {
+    display: block;
+    color: var(--white);
+    font-size: clamp(22px, 3vw, 30px);
+    margin: 0 0 10px;
+}
+
+.quiz-hero h2::before { display: none; }
+
+.quiz-hero p { margin: 0; color: var(--text-muted); font-size: 15px; }
+
+.quiz-hero .badge {
+    display: inline-block;
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,220,200,0.28);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+}
+
+/* The progress bar that fills up as you answer questions */
+.quiz-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.progress-bar-track {
+    height: 4px;
+    background: var(--bg-3);
+    border-radius: 10px;
+    margin-bottom: 32px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    border-radius: 10px;
+    width: 0%;
+    transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+    box-shadow: 0 0 8px rgba(0,220,200,0.4);
+}
+
+/* Each quiz question sits in its own card */
+form { background: transparent; box-shadow: none; padding: 0; max-width: 100%; }
+
+.question-card {
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 22px 24px;
+    margin-bottom: 14px;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.question-card:focus-within {
+    border-color: rgba(0,220,200,0.38);
+    box-shadow: 0 0 0 3px rgba(0,220,200,0.07);
+}
+
+.question-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--white);
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+.question-num {
+    background: var(--accent-dim);
+    border: 1px solid rgba(0,220,200,0.28);
+    color: var(--accent);
+    border-radius: 8px;
+    width: 30px; height: 30px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    font-family: 'Syne', sans-serif;
+    flex-shrink: 0;
+}
+
+.question-type-tag {
+    margin-left: auto;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.07em;
+    background: rgba(59,130,246,0.11);
+    color: #93c5fd;
+    border: 1px solid rgba(59,130,246,0.2);
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+}
+
+/* Each answer choice is a clickable row - clicking the label selects the input */
+.option-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    margin-bottom: 6px;
+    font-size: 14.5px; font-weight: 300;
+    color: var(--text);
+    transition: background var(--transition), border-color var(--transition);
+    /* makes the whole row selectable, not just the radio circle */
+    user-select: none;
+}
+
+.option-row:hover {
+    background: var(--surface-hv);
+    border-color: var(--border);
+}
+
+.option-row input[type="radio"],
+.option-row input[type="checkbox"] {
+    accent-color: var(--accent);
+    width: 16px; height: 16px;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+/* The text box for question 1 */
+#quizForm input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-3);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 300;
+    transition: border-color var(--transition), box-shadow var(--transition);
+    outline: none;
+}
+
+#quizForm input[type="text"]:focus {
+    border-color: rgba(0,220,200,0.45);
+    box-shadow: 0 0 0 3px rgba(0,220,200,0.07);
+}
+
+#quizForm input[type="text"]::placeholder { color: var(--text-faint); }
+
+/* Submit and Reset buttons at the bottom of the quiz */
+.btn-row { display: flex; gap: 12px; margin-top: 28px; }
+
+.btn-submit {
+    flex: 1;
+    padding: 14px 24px;
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+    border-radius: 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: opacity var(--transition), box-shadow var(--transition), transform var(--transition);
+    box-shadow: 0 0 22px rgba(0,220,200,0.22);
+}
+
+.btn-submit:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 0 34px rgba(0,220,200,0.38);
+}
+
+.btn-reset {
+    padding: 14px 20px;
+    background: var(--surface);
+    color: var(--text-muted);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 500;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.btn-reset:hover {
+    background: var(--surface-hv);
+    color: var(--white);
+    border-color: var(--border-hv);
+}
+
+/* Results section that shows up after submitting */
+#results { margin-top: 32px; }
+
+.result-header {
+    padding: 36px 28px 26px;
+    text-align: center;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.result-header.pass {
+    background: linear-gradient(135deg, rgba(16,185,129,0.18) 0%, rgba(16,185,129,0.06) 100%);
+    border: 1px solid rgba(16,185,129,0.28);
+    border-bottom: none;
+}
+
+.result-header.fail {
+    background: linear-gradient(135deg, rgba(239,68,68,0.18) 0%, rgba(239,68,68,0.06) 100%);
+    border: 1px solid rgba(239,68,68,0.28);
+    border-bottom: none;
+}
+
+.result-emoji  { font-size: 44px; margin-bottom: 10px; line-height: 1; }
+
+.result-verdict {
+    font-family: 'Syne', sans-serif;
+    font-size: 30px; font-weight: 800;
+    color: var(--white);
+    margin: 0 0 5px;
+    letter-spacing: -0.02em;
+}
+
+.result-score-text { font-size: 15px; color: var(--text-muted); margin: 0; font-weight: 300; }
+
+.score-ring-row { display: flex; justify-content: center; margin: 18px 0 6px; }
+
+.score-circle {
+    width: 88px; height: 88px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 3px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    color: var(--white);
+}
+
+.result-header.pass .score-circle { border-color: rgba(16,185,129,0.38); }
+.result-header.fail .score-circle { border-color: rgba(239,68,68,0.38); }
+
+.score-big  { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; line-height: 1; }
+.score-denom{ font-size: 12px; color: var(--text-muted); }
+
+.result-breakdown {
+    background: var(--bg-2);
+    padding: 22px 24px;
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+}
+
+.result-breakdown h3 {
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text-faint);
+    margin: 0 0 14px;
+}
+
+.result-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    font-size: 14px;
+    border: 1px solid;
+}
+
+.result-item.correct  { background: rgba(16,185,129,0.07); border-color: rgba(16,185,129,0.2); }
+.result-item.incorrect{ background: rgba(239,68,68,0.07);  border-color: rgba(239,68,68,0.2); }
+
+.result-icon       { font-size: 17px; flex-shrink: 0; line-height: 1.5; }
+.result-item-label { font-family: 'Syne', sans-serif; font-weight: 600; color: var(--white); font-size: 13px; margin-bottom: 2px; }
+.result-item-note  { color: var(--text-muted); font-size: 13px; font-weight: 300; }
+
+/* Simple fade + slide up animation that runs when the page first loads */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0);    }
+}
+
+main > * {
+    animation: fadeUp 0.48s ease both;
+}
+
+main > *:nth-child(1) { animation-delay: 0.04s; }
+main > *:nth-child(2) { animation-delay: 0.09s; }
+main > *:nth-child(3) { animation-delay: 0.14s; }
+main > *:nth-child(4) { animation-delay: 0.19s; }
+main > *:nth-child(5) { animation-delay: 0.23s; }
+main > *:nth-child(6) { animation-delay: 0.26s; }
+main > *:nth-child(7) { animation-delay: 0.28s; }
+
+/* Tablet layout adjustments (screens 900px wide or narrower) */
+@media (max-width: 900px) {
+    :root { --max-w: 100%; }
+
+    /* slightly tighten the header gap */
+    .header-inner { gap: 14px; }
+
+    nav a { font-size: 12px; padding: 5px 9px; }
+
+    main { padding: 32px clamp(16px, 4vw, 28px); }
+
+    h2 { font-size: 20px; margin-top: 44px; }
+
+    /* make floated images a bit smaller to give text more room */
+    .img-inline { width: 170px; }
+
+    /* tables already scroll via .table-wrap, nothing extra needed here */
+}
+
+/* Mobile layout (screens 640px wide or narrower)
+   Big changes: hamburger menu replaces the nav, images go full width, etc. */
+@media (max-width: 640px) {
+    :root { --header-h: 60px; }
+
+    /* swap out the desktop nav for the hamburger menu */
+    .menu-toggle { display: flex; }
+    nav           { display: none; }   /* hide the regular nav */
+    .mobile-nav   { display: flex; }   /* show the mobile dropdown instead */
+
+    /* shrink the logo text a bit */
+    .site-logo { font-size: 11px; }
+
+    main { padding: 28px 16px; }
+
+    h2 { font-size: 18px; margin-top: 36px; }
+    p  { font-size: 14.5px; }
+    ul li, ol li { font-size: 14px; padding: 10px 14px 10px 38px; }
+    ul li::before { left: 13px; }
+
+    /* images go full width and a bit shorter on phones */
+    img { max-height: 200px; margin: 20px 0; border-radius: var(--radius); }
+
+    /* turn off the float so inline images stack vertically on mobile */
+    .img-inline {
+        float: none;
+        width: 100%;
+        max-height: 160px;
+        margin: 0 0 16px 0;
+        object-fit: contain;
+    }
+
+    /* scale down logo images a bit */
+    .img-logo { max-width: 120px; max-height: 44px; }
+
+    /* slightly smaller font in tables on mobile */
+    table { font-size: 13px; }
+    table th, table td { padding: 10px 12px; }
+
+    /* quiz adjustments for small screens */
+    .quiz-hero { padding: 28px 18px 22px; }
+    .question-card { padding: 18px 16px; }
+    .question-label { font-size: 14px; gap: 9px; }
+    .question-type-tag { display: none; } /* hide the type label, not enough room */
+    .btn-row { flex-direction: column; }
+    .btn-submit, .btn-reset { width: 100%; text-align: center; }
+
+    /* results panel adjustments */
+    .result-header { padding: 28px 18px 20px; }
+    .result-verdict { font-size: 24px; }
+}
+
+
