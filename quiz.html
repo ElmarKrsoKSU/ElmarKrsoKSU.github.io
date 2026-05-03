@@ -2,63 +2,172 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Test Your Knowledge!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz – Web Servers Project</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
-    <h1>Quiz</h1>
-    <nav>
+    <div class="header-inner">
+        <!-- logo in the top left -->
+        <a href="index.html" class="site-logo">
+            Elmar<span class="sep">|</span><span class="org">KSU</span>
+        </a>
+
+        <!-- three-line menu button, only shows on mobile -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- navigation links across the top -->
+        <nav id="desktopNav">
+            <a href="index.html">Home</a>
+            <a href="topic1.html">History</a>
+            <a href="topic2.html">Modern Servers</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="quiz.html" class="active">Quiz</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <!-- dropdown menu for mobile screens -->
+    <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
-        <a href="topic1.html" class="active">History</a>
+        <a href="topic1.html">History</a>
         <a href="topic2.html">Modern Servers</a>
         <a href="concepts.html">Key Concepts</a>
-        <a href="quiz.html">Quiz</a>
+        <a href="quiz.html" class="active">Quiz</a>
         <a href="references.html">References</a>
         <a href="about.html">About</a>
-    </nav>
+    </div>
 </header>
-<body>
 
+<main>
 
-<h1>Self-Assessment Quiz</h1>
+    <!-- banner at the top of the quiz with instructions -->
+    <div class="quiz-hero">
+        <div class="badge">&#128221; Self-Assessment</div>
+        <h2>Test Your Knowledge</h2>
+        <p>5 questions covering web servers, sorting algorithms, and web technologies.<br>You need <strong>3 out of 5</strong> to pass.</p>
+    </div>
 
-<form id="quizForm">
+    <!-- progress bar - fills up as questions get answered -->
+    <div class="quiz-progress">
+        <span id="progressLabel">0 of 5 answered</span>
+        <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
 
-    <p>1. Bubble sort has a time complexity of ______.</p>
-    <input type="text" id="q1"><br><br>
+    <!-- quiz form - quiz.js handles the grading, no page reload needed -->
+    <form id="quizForm">
 
-    <p>2. What does CSS stand for?</p>
-    <input type="radio" name="q2" value="a"> Computer Style Sheets<br>
-    <input type="radio" name="q2" value="b"> Cascading Style Sheets<br>
-    <input type="radio" name="q2" value="c"> Creative Style System<br><br>
+        <!-- Q1: fill in the blank -->
+        <div class="question-card" id="card1">
+            <div class="question-label">
+                <span class="question-num">1</span>
+                Bubble sort has a worst-case time complexity of ______.
+                <span class="question-type-tag">Fill-in</span>
+            </div>
+            <input type="text" id="q1" placeholder="e.g. O(n&sup2;)">
+        </div>
 
-    <p>3. Which tag is used for JavaScript?</p>
-    <input type="radio" name="q3" value="a"> &lt;js&gt;<br>
-    <input type="radio" name="q3" value="b"> &lt;script&gt;<br>
-    <input type="radio" name="q3" value="c"> &lt;javascript&gt;<br><br>
+        <!-- Q2: multiple choice -->
+        <div class="question-card" id="card2">
+            <div class="question-label">
+                <span class="question-num">2</span>
+                What does CSS stand for?
+                <span class="question-type-tag">Multiple Choice</span>
+            </div>
+            <label class="option-row">
+                <input type="radio" name="q2" value="a"> Computer Style Sheets
+            </label>
+            <label class="option-row">
+                <input type="radio" name="q2" value="b"> Cascading Style Sheets
+            </label>
+            <label class="option-row">
+                <input type="radio" name="q2" value="c"> Creative Style System
+            </label>
+        </div>
 
-    <p>4. Which is used for styling?</p>
-    <input type="radio" name="q4" value="a"> HTML<br>
-    <input type="radio" name="q4" value="b"> CSS<br>
-    <input type="radio" name="q4" value="c"> Java<br><br>
+        <!-- Q3: multiple choice -->
+        <div class="question-card" id="card3">
+            <div class="question-label">
+                <span class="question-num">3</span>
+                Which HTML tag is used to include JavaScript?
+                <span class="question-type-tag">Multiple Choice</span>
+            </div>
+            <label class="option-row">
+                <input type="radio" name="q3" value="a"> &lt;js&gt;
+            </label>
+            <label class="option-row">
+                <input type="radio" name="q3" value="b"> &lt;script&gt;
+            </label>
+            <label class="option-row">
+                <input type="radio" name="q3" value="c"> &lt;javascript&gt;
+            </label>
+        </div>
 
-    <p>5. Select programming languages:</p>
-    <input type="checkbox" name="q5" value="JavaScript"> JavaScript<br>
-    <input type="checkbox" name="q5" value="HTML"> HTML<br>
-    <input type="checkbox" name="q5" value="Python"> Python<br>
-    <input type="checkbox" name="q5" value="CSS"> CSS<br><br>
+        <!-- Q4: multiple choice -->
+        <div class="question-card" id="card4">
+            <div class="question-label">
+                <span class="question-num">4</span>
+                Which language is primarily used for styling web pages?
+                <span class="question-type-tag">Multiple Choice</span>
+            </div>
+            <label class="option-row">
+                <input type="radio" name="q4" value="a"> HTML
+            </label>
+            <label class="option-row">
+                <input type="radio" name="q4" value="b"> CSS
+            </label>
+            <label class="option-row">
+                <input type="radio" name="q4" value="c"> Java
+            </label>
+        </div>
 
-    <button type="button" onclick="submitQuiz()">Submit</button>
-    <button type="button" onclick="resetQuiz()">Reset</button>
+        <!-- Q5: checkbox (select all that apply) -->
+        <div class="question-card" id="card5">
+            <div class="question-label">
+                <span class="question-num">5</span>
+                Select all true <em>programming</em> languages (not markup or styling):
+                <span class="question-type-tag">Checkbox</span>
+            </div>
+            <label class="option-row">
+                <input type="checkbox" name="q5" value="JavaScript"> JavaScript
+            </label>
+            <label class="option-row">
+                <input type="checkbox" name="q5" value="HTML"> HTML
+            </label>
+            <label class="option-row">
+                <input type="checkbox" name="q5" value="Python"> Python
+            </label>
+            <label class="option-row">
+                <input type="checkbox" name="q5" value="CSS"> CSS
+            </label>
+        </div>
 
-</form>
+        <!-- submit and reset buttons -->
+        <div class="btn-row">
+            <button type="button" id="submitBtn" class="btn-submit">&#9989; Submit Quiz</button>
+            <button type="button" id="resetBtn" class="btn-reset">&#8635; Reset</button>
+        </div>
 
-<div id="results"></div>
+    </form>
+
+    <!-- results show up here after the quiz is submitted -->
+    <div id="results"></div>
+
+</main>
+
+<footer>
+    <p>This is a class project for IT3203</p>
+    <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
+</footer>
 
 <script src="quiz.js"></script>
-
 </body>
 </html>
