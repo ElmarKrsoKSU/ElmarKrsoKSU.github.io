@@ -3,15 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elmar Krso's Web Servers Project</title>
-    <link rel="stylesheet" href="style.css"> 
+    <title>Web Servers: Before, Now, and After</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <h1>Web Servers: Before, Now, and After</h1>
-    <nav>
+    <div class="header-inner">
+        <!-- logo in the top left -->
+        <a href="index.html" class="site-logo">
+            Elmar<span class="sep">|</span><span class="org">KSU</span>
+        </a>
+
+        <!-- three-line menu button, only shows on mobile -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- navigation links across the top -->
+        <nav id="desktopNav">
+            <a href="index.html" class="active">Home</a>
+            <a href="topic1.html">History</a>
+            <a href="topic2.html">Modern Servers</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <!-- dropdown menu for mobile screens -->
+    <div class="mobile-nav" id="mobileNav">
         <a href="index.html" class="active">Home</a>
         <a href="topic1.html">History</a>
         <a href="topic2.html">Modern Servers</a>
@@ -19,86 +42,115 @@
         <a href="quiz.html">Quiz</a>
         <a href="references.html">References</a>
         <a href="about.html">About</a>
-    </nav>
+    </div>
 </header>
 
 <main>
-
-    <!-- INTRO -->
+    <!-- intro paragraph -->
     <h2>Introduction</h2>
     <p>
-        Web servers are a fundamental part of how the internet works. Every time you visit a website, your browser sends
-        a request to a web server, which then delivers the content you see—such as text, images, videos, and interactive
-        features. Without web servers, modern websites and applications would not exist.
+        Web servers are a huge part of how the internet works. Every time you open a website,
+        your browser is actually sending a request to a web server somewhere, and that server
+        sends back all the files your browser needs to show the page. It all happens in less
+        than a second, and most people never think about it.
     </p>
-
     <p>
-        Over time, web servers have evolved from simple systems that served static HTML pages into powerful platforms
-        capable of handling millions of users, complex applications, and real-time data processing. This website explores
-        that evolution, highlighting the key technologies and concepts that shaped the modern web.
+        This site covers the history of web servers, what they look like today, and where
+        things are headed. It started back in 1990 when Tim Berners-Lee set up the very
+        first web server on a NeXT computer at CERN with only a 2 GB disk and a 256 MHz
+        processor. From that one machine, the web grew into something that now handles
+        billions of requests every single day.
     </p>
 
-    <!-- IMAGE -->
-    <img src="https://media.istockphoto.com/id/2148113350/photo/data-center-server-racks-it-modern-hardware-server-room-data-storage-center-database.jpg?s=612x612&w=0&k=20&c=6rMsjA_oGVjsSpFCed-Cg6h-9XPn8I3vPg8FWOQulos=" alt="Modern Data Center">
+    <!-- hero image -->
+    <img src="https://media.istockphoto.com/id/2148113350/photo/data-center-server-racks-it-modern-hardware-server-room-data-storage-center-database.jpg?s=612x612&w=0&k=20&c=6rMsjA_oGVjsSpFCed-Cg6h-9XPn8I3vPg8FWOQulos=" alt="Modern data center with server racks">
 
-    <!-- WHY IMPORTANT -->
+    <!-- explain how a request/response works -->
+    <h2>How Web Servers Work</h2>
+    <p>
+        A web server is two things at once: a physical (or virtual) computer, and the software
+        running on it that listens for incoming requests. When you type a URL into your browser,
+        here is basically what happens:
+    </p>
+    <ul>
+        <li>Your browser builds an <strong>HTTP request</strong> and sends it to the server.</li>
+        <li>The request travels over the internet using TCP/IP until it reaches the right machine.</li>
+        <li>The server figures out what you asked for, finds the file or data, and puts together a response.</li>
+        <li>The server sends back an <strong>HTTP response</strong> with a status code like <em>200 OK</em> (worked) or <em>404 Not Found</em> (did not work).</li>
+        <li>Your browser reads the response and shows you the page.</li>
+    </ul>
+    <p>
+        The most common request type is <strong>GET</strong> (just loading a page). Others include
+        <strong>POST</strong> (submitting a form), <strong>PUT</strong> (updating something), and
+        <strong>DELETE</strong> (removing something). These are used all the time in modern web apps.
+    </p>
+
+    <!-- stats and reasons web servers are important -->
     <h2>Why Web Servers Matter</h2>
     <p>
-        Web servers are responsible for storing, processing, and delivering content across the internet. They enable
-        everything from simple blogs to complex platforms like social media, e-commerce websites, and streaming services.
+        Without web servers, the internet basically does not work. Every website, app, and online
+        service depends on them. The growth has been pretty wild when you look at the numbers:
+    </p>
+    <ul>
+        <li>By the end of 1993, there were already over <strong>500 web servers</strong> worldwide.</li>
+        <li>Just one year later that jumped to over <strong>10,000 servers</strong> and 10 million users.</li>
+        <li>Today web servers handle <strong>billions of HTTP requests</strong> every day.</li>
+        <li>In 2023 alone, almost <strong>14 billion servers</strong> were shipped globally, worth over $90 billion.</li>
+    </ul>
+    <p>
+        Web servers also handle a lot of the security side of things. Modern servers use
+        <strong>HTTPS</strong> to encrypt everything going back and forth so your passwords and
+        credit card info stay private. They also do things like <strong>virtual hosting</strong>
+        (running many websites from one machine), <strong>caching</strong> (saving copies of pages
+        to respond faster), and <strong>load balancing</strong> (spreading traffic across multiple
+        machines so nothing crashes).
     </p>
 
-    <ul>
-        <li>Deliver website content to users instantly</li>
-        <li>Handle multiple users at the same time</li>
-        <li>Ensure security through encryption (HTTPS)</li>
-        <li>Support modern applications and cloud services</li>
-    </ul>
-
-    <!-- KEY TERMS -->
+    <!-- quick list of the main technologies -->
     <h2>Key Technologies</h2>
     <p>
-        Several important technologies play a role in how web servers function. Understanding these terms will help you
-        better understand the rest of this site:
+        A few technologies come up a lot when talking about web servers. Here is a quick overview
+        of the most important ones:
     </p>
-
     <ul>
-        <li><strong>HTTP:</strong> The protocol used for communication between browsers and servers.</li>
-        <li><strong>Apache:</strong> A widely used open-source web server known for flexibility.</li>
-        <li><strong>NGINX:</strong> A high-performance server designed for speed and scalability.</li>
-        <li><strong>Cloud Computing:</strong> Hosting and scaling servers through online infrastructure.</li>
+        <li><strong>HTTP / HTTPS:</strong> The rules that browsers and servers use to talk to each other. HTTPS is the secure, encrypted version.</li>
+        <li><strong>Apache:</strong> One of the oldest open-source web servers still widely used today, powering around 23.7% of all websites as of 2026.</li>
+        <li><strong>NGINX:</strong> A newer, faster server built to handle lots of connections at the same time. Currently the most popular server at 32.7% market share.</li>
+        <li><strong>Cloudflare:</strong> A CDN and security platform that protects and speeds up websites for around 27.7% of all sites.</li>
+        <li><strong>Cloud Computing:</strong> Hosting servers on services like AWS or Google Cloud instead of owning physical hardware.</li>
+        <li><strong>TCP/IP:</strong> The underlying internet protocol that moves data packets from one place to another.</li>
     </ul>
 
-    <!-- SITE GUIDE -->
-    <h2>What You Will Learn</h2>
+    <!-- links to the other pages with descriptions -->
+    <h2>What This Site Covers</h2>
     <p>
-        This website is organized into several sections to guide you through the evolution of web servers:
+        The site is split into a few different pages so you can explore each topic at your own pace:
     </p>
-
     <ul>
         <li>
-            <strong><a href="topic1.html">History of Web Servers</a>:</strong>
-            Learn how web servers started and how early technologies shaped the internet.
+            <strong><a href="topic1.html">History of Web Servers:</a></strong>
+            Goes through how everything started, from Berners-Lee's first machine to Apache and NGINX.
         </li>
         <li>
-            <strong><a href="topic2.html">Modern Web Servers</a>:</strong>
-            Explore current technologies like cloud computing, load balancing, and high-performance systems.
+            <strong><a href="topic2.html">Modern Web Servers:</a></strong>
+            Covers cloud computing, containers, microservices, load balancing, and newer stuff like HTTP/3.
         </li>
         <li>
-            <strong><a href="concepts.html">Key Concepts</a>:</strong>
-            Understand important technical concepts such as HTTP, caching, and scalability.
+            <strong><a href="concepts.html">Key Concepts:</a></strong>
+            Breaks down the technical terms like HTTP, caching, scalability, and CDNs.
         </li>
         <li>
-            <strong><a href="quiz.html">Quiz</a>:</strong>
-            Test your knowledge and understanding of the material.
+            <strong><a href="quiz.html">Quiz:</a></strong>
+            A short quiz to test what you picked up from the reading.
         </li>
     </ul>
 
-    <!-- CLOSING -->
+    <!-- wrap up the page -->
     <h2>Conclusion</h2>
     <p>
-        The development of web servers has been essential to the growth of the internet. From simple beginnings to
-        advanced cloud-based systems, web servers continue to evolve to meet the demands of modern users and applications.
+        Web servers have come a long way from one computer in a lab in Switzerland. Understanding
+        how they work gives you a better picture of how the internet as a whole functions. Check out
+        the other pages to dig deeper into any part of this topic.
     </p>
 
 </main>
@@ -108,5 +160,7 @@
     <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
 </footer>
 
+
+<script src="quiz.js"></script>
 </body>
 </html>
