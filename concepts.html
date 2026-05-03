@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Key Concepts</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -9,8 +10,31 @@
 <body>
 
 <header>
-    <h1>Key Concepts of Web Servers</h1>
-    <nav>
+    <div class="header-inner">
+        <!-- logo in the top left -->
+        <a href="index.html" class="site-logo">
+            Elmar<span class="sep">|</span><span class="org">KSU</span>
+        </a>
+
+        <!-- three-line menu button, only shows on mobile -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- navigation links across the top -->
+        <nav id="desktopNav">
+            <a href="index.html">Home</a>
+            <a href="topic1.html">History</a>
+            <a href="topic2.html">Modern Servers</a>
+            <a href="concepts.html" class="active">Key Concepts</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <!-- dropdown menu for mobile screens -->
+    <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
         <a href="topic1.html">History</a>
         <a href="topic2.html">Modern Servers</a>
@@ -18,100 +42,228 @@
         <a href="quiz.html">Quiz</a>
         <a href="references.html">References</a>
         <a href="about.html">About</a>
-    </nav>
+    </div>
 </header>
 
 <main>
-
+    <!-- explain what HTTP is -->
     <h2>HTTP (HyperText Transfer Protocol)</h2>
     <p>
-        HTTP is the foundation of communication on the web. It is a protocol that allows web browsers (clients) to request
-        resources from web servers. When you enter a URL into your browser, an HTTP request is sent to a server, which then
-        responds with the requested content such as HTML pages, images, or data.
+        HTTP is the set of rules that browsers and web servers use to talk to each other.
+        When you visit a website, your browser sends an HTTP request and the server sends
+        back an HTTP response. That back-and-forth is happening constantly in the background
+        every time you use the web.
     </p>
     <p>
-        HTTP is stateless, meaning each request is independent and does not remember previous interactions. This is why
-        technologies like cookies and sessions are used to maintain user data across requests.
+        Every HTTP message has a few parts: a start line (describing what is being asked or
+        what happened), headers (extra info like browser type or file format), and optionally
+        a body (the actual content being sent or received).
+    </p>
+    <p>
+        One important thing about HTTP is that it is <strong>stateless</strong>, meaning
+        each request is completely separate. The server does not automatically remember who
+        you are from one request to the next. That is why websites use things like
+        <strong>cookies</strong> and <strong>sessions</strong> to keep track of logged-in
+        users. HTTP/1.1 added the ability to reuse connections. HTTP/2 added multiplexing
+        so multiple requests could run over one connection. HTTP/3 switched away from TCP
+        entirely to fix some deeper performance issues.
     </p>
 
-    <h2>HTTPS and Encryption</h2>
+    <!-- developer/code photo to go with the HTTP section -->
+    <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=800&auto=format&fit=crop" alt="Developer working with web protocols and code">
+
+    <!-- GET, POST, PUT, PATCH, DELETE -->
+    <h2>HTTP Request Methods</h2>
     <p>
-        HTTPS is the secure version of HTTP. It uses encryption protocols such as SSL/TLS to protect data transmitted
-        between the client and server. This ensures that sensitive information like passwords, credit card numbers,
-        and personal data cannot be intercepted by attackers.
+        Every HTTP request uses a method that tells the server what kind of action to take:
     </p>
+    <ul>
+        <li><strong>GET:</strong> Load a resource. This is what happens every time you open a page or click a link.</li>
+        <li><strong>POST:</strong> Send data to the server, like submitting a sign-up form.</li>
+        <li><strong>PUT:</strong> Replace a resource on the server with new data.</li>
+        <li><strong>PATCH:</strong> Update just part of a resource instead of replacing the whole thing.</li>
+        <li><strong>DELETE:</strong> Remove a resource from the server.</li>
+    </ul>
     <p>
-        Encryption is essential for modern websites, especially those that handle user authentication or financial
-        transactions. Most modern browsers now warn users when a site does not use HTTPS.
+        These five methods are also the building blocks of REST APIs, which is how most
+        modern web apps and mobile apps communicate with their backends.
     </p>
 
+    <!-- 200, 404, 500 etc -->
+    <h2>HTTP Status Codes</h2>
+    <p>
+        Every server response includes a status code that tells you whether the request
+        worked or not. They are grouped into five ranges:
+    </p>
+    <ul>
+        <li><strong>1xx (Informational):</strong> The request is still being processed. You rarely see these directly.</li>
+        <li><strong>2xx (Success):</strong> It worked. The most common is <em>200 OK</em>.</li>
+        <li><strong>3xx (Redirect):</strong> The resource moved. <em>301 Moved Permanently</em> sends the browser to a new URL.</li>
+        <li><strong>4xx (Client Error):</strong> Something was wrong with the request. <em>404 Not Found</em> and <em>403 Forbidden</em> are the ones most people recognize.</li>
+        <li><strong>5xx (Server Error):</strong> The server had a problem. <em>500 Internal Server Error</em> is the most generic one.</li>
+    </ul>
+
+    <!-- encryption and HTTPS -->
+    <h2>HTTPS and Encryption (SSL/TLS)</h2>
+    <p>
+        HTTPS is just HTTP with encryption added. Without it, everything sent between
+        your browser and a server goes as plain text, which means anyone watching the
+        network traffic could read your passwords or credit card numbers. HTTPS wraps
+        everything in a layer of encryption so that cannot happen.
+    </p>
+    <p>
+        The encryption layer is called <strong>TLS (Transport Layer Security)</strong>.
+        You might also see the older name SSL, which TLS replaced. When you visit an
+        HTTPS site, your browser and the server do a quick <strong>TLS handshake</strong>
+        where they agree on encryption keys. After that everything sent between them is
+        scrambled. Even if someone intercepts it, they just see garbage without the key.
+    </p>
+    <p>
+        The handshake adds a little overhead (roughly 110ms vs 50ms without it), but
+        modern optimizations like session resumption cut that down by reusing key info
+        from a previous connection. Most browsers now show a warning if a site is not
+        using HTTPS, and Google search gives HTTPS sites a small ranking boost.
+    </p>
+
+    <!-- security photo to go with the HTTPS section -->
+    <img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?w=800&auto=format&fit=crop" alt="Cybersecurity and encryption concept">
+
+    <!-- what caching is and the different levels -->
     <h2>Caching</h2>
     <p>
-        Caching is a technique used to store frequently accessed data so that it can be delivered more quickly. Instead
-        of generating the same response repeatedly, a server can store a cached version and serve it instantly.
+        Caching means storing a copy of something so you do not have to go get it again
+        every single time someone asks for it. It happens at a few different levels:
     </p>
+    <ul>
+        <li><strong>Browser cache:</strong> Your browser saves copies of images, CSS, and scripts locally so they load instantly on repeat visits.</li>
+        <li><strong>Server cache:</strong> The web server stores the result of expensive database queries or page renders so it does not have to redo them constantly.</li>
+        <li><strong>CDN cache:</strong> A CDN stores copies of your content at edge servers around the world so users nearby get it quickly.</li>
+        <li><strong>Reverse proxy cache:</strong> A proxy server like NGINX can cache responses from the backend and serve them directly.</li>
+    </ul>
     <p>
-        There are multiple types of caching, including browser caching, server-side caching, and content delivery
-        network (CDN) caching. Caching significantly improves performance and reduces server load.
+        HTTP lets servers control caching through headers like
+        <code>Cache-Control: max-age=3600</code>, which tells browsers how long to keep
+        a copy before checking for an update. Good caching can make a huge difference in
+        how fast a site feels.
     </p>
 
-    <h2>NGINX</h2>
-    <p>
-        NGINX is a high-performance web server known for its ability to handle a large number of concurrent connections.
-        Unlike traditional servers like Apache, NGINX uses an event-driven, asynchronous architecture, which makes it
-        more efficient and scalable.
-    </p>
-    <p>
-        NGINX is often used as a reverse proxy and load balancer, helping distribute traffic across multiple servers to
-        improve reliability and performance.
-    </p>
-
-    <h2>Apache</h2>
-    <p>
-        Apache is one of the oldest and most widely used web servers. It uses a process-based model and supports a wide
-        range of modules that extend its functionality. Apache is known for its flexibility and ease of configuration.
-    </p>
-    <p>
-        However, Apache can consume more resources under heavy traffic compared to newer solutions like NGINX, which is
-        why many modern systems use a combination of both.
-    </p>
-
-    <h2>Cloud Computing</h2>
-    <p>
-        Cloud computing allows web servers to be hosted on remote infrastructure instead of physical machines. Services
-        like AWS, Microsoft Azure, and Google Cloud provide scalable environments where resources can be adjusted based
-        on demand.
-    </p>
-    <p>
-        This allows websites to handle sudden increases in traffic without crashing and reduces the need for maintaining
-        physical hardware.
-    </p>
-
+    <!-- how load balancers work -->
     <h2>Load Balancing</h2>
     <p>
-        Load balancing is the process of distributing incoming network traffic across multiple servers. This ensures that
-        no single server becomes overloaded, improving performance and reliability.
+        Load balancing is the practice of splitting incoming traffic across multiple servers
+        so no single machine gets overloaded. A load balancer sits in front of the server
+        pool and decides where to send each request based on different rules:
     </p>
+    <ul>
+        <li><strong>Round-robin:</strong> Sends requests to servers in rotation, one after another.</li>
+        <li><strong>Least-connections:</strong> Picks whichever server currently has the fewest active connections.</li>
+        <li><strong>Weighted:</strong> Sends more traffic to faster or more powerful servers in the pool.</li>
+    </ul>
     <p>
-        Load balancers can detect server failures and redirect traffic to healthy servers, making systems more fault-tolerant.
+        Load balancers also do health checks. If a server stops responding, the balancer
+        automatically removes it from rotation and splits its traffic among the remaining
+        healthy servers. This is how big platforms stay up even when individual machines fail.
     </p>
 
-    <h2>Scalability</h2>
+    <!-- reverse proxy explanation -->
+    <h2>Reverse Proxy</h2>
     <p>
-        Scalability refers to a system's ability to handle increased traffic or workload. There are two main types:
-        vertical scaling (adding more power to a single server) and horizontal scaling (adding more servers).
+        A reverse proxy is a server that sits in front of your real backend servers and
+        handles all incoming traffic first. From a user's perspective it just looks like
+        your website. Behind the scenes it is doing things like hiding your server's real
+        IP address, handling SSL encryption, caching common files, and routing requests
+        to the right backend service.
     </p>
     <p>
-        Modern web applications rely heavily on horizontal scaling to support millions of users efficiently.
+        NGINX is probably the most popular reverse proxy. Cloudflare's entire global
+        network also works as a reverse proxy at a huge scale, which is part of why it
+        can absorb DDoS attacks without taking your site down.
     </p>
 
+    <!-- content delivery networks -->
     <h2>Content Delivery Networks (CDNs)</h2>
     <p>
-        CDNs are networks of servers distributed around the world that deliver content to users based on their geographic
-        location. This reduces latency and improves load times.
+        A CDN is a worldwide network of servers that cache your content and serve it from
+        wherever is closest to the person requesting it. Without a CDN every request has
+        to travel to your main server, no matter how far away the user is. With a CDN a
+        user in London hitting a site hosted in Dallas might actually get files from a
+        CDN server in London, cutting the load time significantly.
     </p>
     <p>
-        Popular CDNs include Cloudflare and Akamai, which help speed up websites and provide additional security features.
+        CDNs are most useful for static content like images, videos, fonts, and CSS files
+        that can be safely cached. CDNs also absorb a lot of traffic away from your main
+        servers, which makes DDoS attacks much harder to pull off. Cloudflare, Akamai,
+        and Amazon CloudFront are the biggest ones. Cloudflare alone operates in over 300
+        cities worldwide.
+    </p>
+
+    <!-- vertical vs horizontal scaling -->
+    <h2>Scalability</h2>
+    <p>
+        Scalability is about how well a system handles growth. There are two basic ways
+        to scale a web server setup:
+    </p>
+    <ul>
+        <li><strong>Vertical scaling:</strong> Making the server more powerful by adding more CPU, RAM, or faster storage. Simple but there is a ceiling to how far you can go, and if that one machine fails everything goes down.</li>
+        <li><strong>Horizontal scaling:</strong> Adding more servers and splitting traffic across all of them with a load balancer. You can keep adding machines as needed, and losing one does not take the whole thing down.</li>
+    </ul>
+    <p>
+        Cloud platforms make horizontal scaling really easy. AWS and Google Cloud can
+        automatically add new instances when traffic spikes and remove them when things
+        calm down. This is called <strong>auto-scaling</strong> and it is how sites like
+        Netflix handle millions of users without manually managing servers.
+    </p>
+
+    <!-- one server running many websites -->
+    <h2>Virtual Hosting</h2>
+    <p>
+        Virtual hosting lets a single server host multiple completely different websites
+        at the same time. When a request comes in, the server reads the Host header to
+        figure out which site is being asked for and serves the right content. This is how
+        shared hosting works: one physical server might be running thousands of websites,
+        each with their own domain and files.
+    </p>
+    <p>
+        Both Apache and NGINX support virtual hosting natively. Without it, every website
+        on the internet would need its own dedicated server, which obviously would not work.
+    </p>
+
+    <!-- domain name system -->
+    <h2>DNS (Domain Name System)</h2>
+    <p>
+        DNS is what translates a human-readable domain name like "google.com" into an IP
+        address like "142.250.80.46" that computers can actually route to. When you type
+        a URL, your computer first does a DNS lookup to find the IP address, then connects
+        to that address to make the HTTP request.
+    </p>
+    <p>
+        DNS is also used in load balancing. A domain can point to multiple IP addresses,
+        and DNS can hand out different ones to different users, effectively spreading the
+        load. This is called DNS-based load balancing and is one of the simpler ways to
+        distribute traffic.
+    </p>
+
+    <!-- Apache web server overview -->
+    <h2>Apache HTTP Server</h2>
+    <p>
+        Apache is the open-source web server that dominated the internet for about 20 years
+        after its release in 1995. It uses a modular design where features can be turned on
+        or off through plug-in modules, which made it very flexible and customizable. Apache
+        also supports .htaccess files that let you configure settings on a per-directory
+        basis without restarting the server, which is why shared hosting providers love it.
+        As of April 2026 it holds about 23.7% of the web server market.
+    </p>
+
+    <!-- NGINX overview -->
+    <h2>NGINX</h2>
+    <p>
+        NGINX (pronounced "engine-x") was created by Igor Sysoev in 2004 specifically
+        to solve the problem of handling huge numbers of simultaneous connections. Its
+        event-driven design lets a small set of worker processes each handle thousands of
+        connections without the memory overhead that Apache's per-connection process model
+        required. Today it is used both as a standalone web server and as a reverse proxy
+        and load balancer sitting in front of other servers. It is currently the most popular
+        web server in the world at around 32.7% market share.
     </p>
 
 </main>
@@ -121,5 +273,7 @@
     <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
 </footer>
 
+
+<script src="quiz.js"></script>
 </body>
 </html>
