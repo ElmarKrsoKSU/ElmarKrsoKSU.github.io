@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>History of Web Servers</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -9,8 +10,31 @@
 <body>
 
 <header>
-    <h1>History of Web Servers</h1>
-    <nav>
+    <div class="header-inner">
+        <!-- logo in the top left -->
+        <a href="index.html" class="site-logo">
+            Elmar<span class="sep">|</span><span class="org">KSU</span>
+        </a>
+
+        <!-- three-line menu button, only shows on mobile -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- navigation links across the top -->
+        <nav id="desktopNav">
+            <a href="index.html">Home</a>
+            <a href="topic1.html" class="active">History</a>
+            <a href="topic2.html">Modern Servers</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <!-- dropdown menu for mobile screens -->
+    <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
         <a href="topic1.html" class="active">History</a>
         <a href="topic2.html">Modern Servers</a>
@@ -18,72 +42,166 @@
         <a href="quiz.html">Quiz</a>
         <a href="references.html">References</a>
         <a href="about.html">About</a>
-    </nav>
+    </div>
 </header>
 
-
 <main>
-
-    <h2>The Beginning of Web Servers</h2>
+    <!-- how the first web server was created -->
+    <h2>Where It All Started (1989-1991)</h2>
     <p>
-        Web servers first appeared in the early 1990s alongside the creation of the World Wide Web. The very first web
-        server was developed by Tim Berners-Lee at CERN. These early servers were extremely simple and were primarily
-        used for sharing research documents between scientists.
+        The whole thing kicked off in March 1989 when Tim Berners-Lee, a British computer
+        scientist working at CERN in Switzerland, wrote up a proposal called
+        <em>HyperText and CERN</em>. The basic idea was to make it easier for scientists
+        to share research without having to email files back and forth. His manager
+        scribbled "Vague but exciting" on the cover page, but approved it anyway.
+    </p>
+    <p>
+        By Christmas 1990, Berners-Lee had the first web server up and running on a NeXT
+        workstation. The machine only had a 2 GB hard drive and a 256 MHz CPU, which sounds
+        almost laughable now. He literally taped a note to the front of it that said
+        <em>"This machine is a server. Do not power it down!"</em> That computer is still
+        at CERN today. The server software was called <strong>CERN HTTPd</strong>, and
+        he also built the first browser alongside it, which he named "WorldWideWeb."
+    </p>
+    <p>
+        Things spread fast. In December 1991 the first web server outside of Europe went
+        online at the Stanford Linear Accelerator Center in California. By late 1992
+        people were already keeping a public list of servers because there were enough of
+        them to track.
     </p>
 
-    <img src="data:image/jpeg;base64,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" alt="First Web Server at CERN">
+    <!-- server photo, floats beside the text -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Wikimedia_Foundation_Servers-8055_35.jpg/500px-Wikimedia_Foundation_Servers-8055_35.jpg" alt="Server hardware in a data center" class="img-inline">
 
+    <!-- how the web grew from 1 server to thousands -->
+    <h2>The Web Explodes (1993-1994)</h2>
     <p>
-        At this stage, web servers could only deliver static content, such as basic HTML pages and text files. There
-        was no support for dynamic content, databases, or user interaction. Despite these limitations, these early
-        systems laid the foundation for the modern internet.
+        In 1993 CERN did something that changed everything: they put all the web technology
+        into the public domain so anyone could use it for free. After that the numbers went
+        crazy. There were over 500 web servers by the end of 1993, and just twelve months
+        later that had jumped to over 10,000 servers and 10 million users. The web went
+        from a research project to a global thing in basically four years.
+    </p>
+    <p>
+        Also in 1993, the National Center for Supercomputing Applications (NCSA) at the
+        University of Illinois released <strong>NCSA HTTPd</strong>, the second big web
+        server after Berners-Lee's original. It could serve regular HTML files but also
+        run programs and send back the output, thanks to a new invention from that same
+        year: <strong>CGI (Common Gateway Interface)</strong>, created by Rob McCool.
+    </p>
+    <p>
+        CGI was a big deal because it meant a web page could actually respond to what a
+        user did. Instead of just showing a fixed file, the server could run a program,
+        maybe pull from a database, and send back something different every time. That
+        is basically how web applications started. NCSA HTTPd also worked with the Mosaic
+        browser, which was the first browser that could show images inline in a page.
     </p>
 
-    <h2>The Rise of Apache</h2>
+    <!-- the rise of the Apache web server -->
+    <h2>Apache Takes Over (1995)</h2>
     <p>
-        One of the most important developments in web server history was the release of the Apache HTTP Server in 1995
-        by the Apache Software Foundation. Apache quickly became the most widely used web server due to its open-source
-        nature and flexibility.
+        When Rob McCool left NCSA in mid-1994, nobody was maintaining NCSA HTTPd anymore.
+        A bunch of webmasters who depended on it started writing their own fixes and
+        improvements. One of them was Brian Behlendorf, who ran the website for Wired
+        Magazine (HotWired). He and a developer named Cliff Skolnick set up a mailing
+        list so everyone could share their patches.
+    </p>
+    <p>
+        By February 1995, eight people had joined and started working together as what
+        they called the Apache Group. They took NCSA HTTPd 1.3 as a starting point,
+        applied all the patches they had collected, tested it on their own servers, and
+        put out the first official release of the <strong>Apache HTTP Server</strong> in
+        April 1995.
     </p>
 
-    <img src="https://www.brcline.com/wp-content/uploads/2020/06/apache-logo.png" alt="Apache Web Server Logo">
+    <!-- Apache logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Apache_HTTP_server_new_logo.svg/800px-Apache_HTTP_server_new_logo.svg.png" alt="Apache HTTP Server" class="img-logo">
 
     <p>
-        Apache introduced a modular architecture, allowing developers to add or remove features easily. This made it
-        highly customizable and suitable for a wide range of applications.
+        The name "Apache" supposedly has two stories. The official one from the Apache
+        Software Foundation is that it was named after the Apache Native American tribe
+        to honor their endurance. The other story, which was actually on their website
+        for years, is that it was just <em>"a patchy server"</em> because of all the
+        patches it was made from. Both explanations got passed around and neither one
+        was ever really settled.
+    </p>
+    <p>
+        Apache 1.0 came out December 1, 1995. By April 1996 it had already passed NCSA
+        HTTPd to become the number one web server. It stayed there for almost 20 years.
+        By 2009 it was running over 100 million websites, which was a first for any
+        web server.
     </p>
 
-    <h2>Challenges and Limitations</h2>
+    <!-- when Apache started struggling with high traffic -->
+    <h2>When Apache Started Struggling (Late 1990s)</h2>
     <p>
-        As the internet grew, websites began to receive more traffic and required better performance. Apache used a
-        process-based model, which created a new process or thread for each connection. While effective for small
-        websites, this approach consumed significant memory and struggled to scale efficiently.
+        During the dot-com boom, Apache started hitting a wall. The way it worked was that
+        every new connection to the server got its own process or thread. For a small site
+        that was fine, but once you had tens of thousands of people connecting at the same
+        time, the server would run out of memory and slow to a crawl.
+    </p>
+    <p>
+        Engineers started calling this the <strong>C10K problem</strong>, meaning the
+        challenge of handling 10,000 concurrent connections on one machine. A software
+        engineer named Dan Kegel wrote a paper about it in 1999 that became pretty
+        well-known. The basic conclusion was that the architecture itself needed to change,
+        not just the settings.
     </p>
 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Wikimedia_Foundation_Servers-8055_35.jpg/500px-Wikimedia_Foundation_Servers-8055_35.jpg" alt="Server Room">
+    <!-- NGINX logo -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="NGINX Logo" class="img-logo">
 
+    <!-- how NGINX solved the scaling problem -->
+    <h2>NGINX Changes the Game (2004)</h2>
     <p>
-        This issue became known as the “C10K problem,” which referred to the challenge of handling 10,000 simultaneous
-        users.
+        The fix came from Igor Sysoev, a Russian systems administrator at Rambler, which
+        was one of Russia's biggest web portals. Rambler was already handling hundreds of
+        millions of page views a month in the early 2000s, so Sysoev knew firsthand how
+        bad the scaling problem was. He tried tweaking Apache first but figured out pretty
+        quickly that the whole architecture needed to be redesigned.
+    </p>
+    <p>
+        Starting in 2002, he built a new server from the ground up using an
+        <strong>event-driven</strong> approach. Instead of one process per connection,
+        a small set of worker processes could each handle thousands of connections at once
+        without blocking. The memory usage was way lower and performance under heavy load
+        was much better.
+    </p>
+    <p>
+        NGINX went public on October 4, 2004. It caught on fast in Russia first, then
+        spread globally as other developers dealing with the same scaling issues tried
+        it out. By September 2008, Rambler was using it to handle 500 million requests
+        per day. As of April 2026, NGINX is the most used web server in the world at
+        about <strong>32.7%</strong> of all websites.
     </p>
 
-    <h2>The Shift Toward High Performance</h2>
+    <!-- Microsoft enters the server market -->
+    <h2>Microsoft Enters the Market (1996)</h2>
     <p>
-        To address these limitations, new web servers such as NGINX were developed. Unlike Apache, NGINX used an
-        event-driven, asynchronous architecture that allowed it to handle many connections with fewer resources.
+        While all the open-source stuff was happening, Microsoft released
+        <strong>Internet Information Services (IIS)</strong> bundled with Windows NT
+        in 1996. It was built for the Windows ecosystem, so companies already running
+        Windows infrastructure tended to use it since it all worked together out of the box.
+    </p>
+    <p>
+        Through the late 1990s the server market basically split three ways: Apache for
+        Linux/Unix servers, IIS for Windows shops, and Netscape Enterprise Server for
+        companies that wanted commercial support. The competition between them pushed
+        all three forward pretty fast and helped nail down a lot of the web standards
+        we still use today.
     </p>
 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="NGINX Logo">
+    <!-- server room photo -->
+    <img src="https://images.unsplash.com/photo-1560732488-6b0df240254a?w=800&auto=format&fit=crop" alt="Server room showing hardware infrastructure">
 
+    <!-- how all this led to modern servers -->
+    <h2>What This All Means Today</h2>
     <p>
-        This shift marked a major turning point in web server design. Developers began prioritizing performance,
-        scalability, and efficiency.
-    </p>
-
-    <h2>Impact on Today’s Web</h2>
-    <p>
-        The evolution of web servers has played a critical role in shaping today’s internet. Modern web servers support
-        dynamic content, cloud computing, and large-scale applications used by millions of users worldwide.
+        Every phase of web server history built on the one before it. Static HTML pages
+        led to CGI and dynamic content. CGI-based servers led to modular open-source
+        servers like Apache. Apache's limitations led to event-driven servers like NGINX.
+        And all of that laid the groundwork for the cloud, containers, and microservices
+        that we cover in the next section.
     </p>
 
 </main>
@@ -93,5 +211,7 @@
     <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
 </footer>
 
+
+<script src="quiz.js"></script>
 </body>
 </html>
