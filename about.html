@@ -1,40 +1,103 @@
 <!DOCTYPE html>
-<html>
-<!-- This is the head -->
+<html lang="en">
 <head>
-    <title>About</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About – Web Servers Project</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<!-- This is the body -->
 <body>
-<!-- This is the header -->
+
 <header>
-    <h1>About</h1>
-    <!-- This is the nav bar -->
-    <nav>
+    <div class="header-inner">
+        <!-- logo in the top left -->
+        <a href="index.html" class="site-logo">
+            Elmar<span class="sep">|</span><span class="org">KSU</span>
+        </a>
+
+        <!-- three-line menu button, only shows on mobile -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- navigation links across the top -->
+        <nav id="desktopNav">
+            <a href="index.html">Home</a>
+            <a href="topic1.html">History</a>
+            <a href="topic2.html">Modern Servers</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="references.html">References</a>
+            <a href="about.html" class="active">About</a>
+        </nav>
+    </div>
+
+    <!-- dropdown menu for mobile screens -->
+    <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
         <a href="topic1.html">History</a>
         <a href="topic2.html">Modern Servers</a>
         <a href="concepts.html">Key Concepts</a>
         <a href="quiz.html">Quiz</a>
         <a href="references.html">References</a>
-        <a href="about.html">About</a>
-    </nav>
+        <a href="about.html" class="active">About</a>
+    </div>
 </header>
-<!-- This is the main section of the page -->
+
 <main>
+
+    <!-- about me intro -->
+    <h2>About the Author</h2>
     <p>
-        My name is Elmar Krso and I am currently studying cyber security. 
-        I found this topic really fun and enlightening, I hope you enjoy it
-        as much as I did! This will be covering the history of web servers, the before,
-        and the after. You may learn something new :)
+        Hi, my name is Elmar Krso and I am a cybersecurity student at Kennesaw State University.
+        I picked web servers as the topic for this project because they are something I use every
+        day without really thinking about, and I wanted to learn more about how they actually work
+        behind the scenes. There is also a lot of overlap with the security stuff I'm studying,
+        especially around HTTPS, encryption, and how reverse proxies handle DDoS attacks.
     </p>
+
+    <!-- about the project -->
+    <h2>About This Project</h2>
+    <p>
+        This site was built for IT3203 (Web Application Development) at KSU. The goal was to
+        research a web-related topic and build a multi-page website that demonstrates responsive
+        design, mobile-friendly layout, and interactive features. The whole thing is hand-coded
+        in HTML, CSS, and JavaScript with no frameworks.
+    </p>
+    <p>
+        The site covers three main areas: the history of web servers from 1990 to today, the
+        modern landscape with cloud computing and CDNs, and the key technical concepts that tie
+        it all together. There is also an interactive quiz with automatic grading and a progress
+        bar.
+    </p>
+
+    <!-- what I learned -->
+    <h2>What I Learned</h2>
+    <p>
+        Some of the bigger things I picked up while building this:
+    </p>
+    <ul>
+        <li><strong>Responsive design is harder than it looks.</strong> Getting the hamburger menu, floated images, and tables to all behave correctly across desktop, tablet, and mobile took more iterations than I expected.</li>
+        <li><strong>Separation of concerns matters.</strong> Moving all the styles into one CSS file and all the scripts into one JS file made everything easier to maintain.</li>
+        <li><strong>Web servers have a really interesting history.</strong> I had no idea Apache was named after "a patchy server" or that NGINX was created in Russia to solve scaling problems for a search engine.</li>
+        <li><strong>Small details add up.</strong> Things like making sure tap targets are big enough, escaping HTML entities in JavaScript output, and making the menu close when you tap outside it - none of it is hard individually, but it all matters for a good experience.</li>
+    </ul>
+
+    <!-- contact / link -->
+    <h2>Course Info</h2>
+    <p>
+        IT3203 - Web Application Development<br>
+        Kennesaw State University, Spring 2026<br>
+        <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
+    </p>
+
 </main>
-<!-- This is the footer requiered -->
+
 <footer>
     <p>This is a class project for IT3203</p>
     <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
 </footer>
 
+<script src="quiz.js"></script>
 </body>
 </html>
