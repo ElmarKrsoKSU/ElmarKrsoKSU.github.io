@@ -2,15 +2,39 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>References</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>References – Web Servers Project</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
-    <h1>References</h1>
-    <nav>
+    <div class="header-inner">
+        <!-- logo in the top left -->
+        <a href="index.html" class="site-logo">
+            Elmar<span class="sep">|</span><span class="org">KSU</span>
+        </a>
+
+        <!-- three-line menu button, only shows on mobile -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- navigation links across the top -->
+        <nav id="desktopNav">
+            <a href="index.html">Home</a>
+            <a href="topic1.html">History</a>
+            <a href="topic2.html">Modern Servers</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="references.html" class="active">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <!-- dropdown menu for mobile screens -->
+    <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
         <a href="topic1.html">History</a>
         <a href="topic2.html">Modern Servers</a>
@@ -18,7 +42,7 @@
         <a href="quiz.html">Quiz</a>
         <a href="references.html" class="active">References</a>
         <a href="about.html">About</a>
-    </nav>
+    </div>
 </header>
 
 <main>
@@ -88,6 +112,166 @@
         </li>
     </ul>
 
+    <!-- HISTORY SOURCES (TOPIC 1) -->
+    <h2>History of Web Servers (Additional Sources)</h2>
+    <ul>
+        <li>
+            <strong>Cybercultural – "1995: Apache and Microsoft IIS Shake Up Web Server Market":</strong>
+            <a href="https://cybercultural.com/p/1995-apache-microsoft-iis-web-server-market/" target="_blank">cybercultural.com</a>
+            <br>
+            Used for details on Brian Behlendorf's role at HotWired, the formation of the Apache Group,
+            NCSA HTTPd's market position, and Apache's April 1996 rise to #1 server status.
+        </li>
+        <li>
+            <strong>Cybercultural – "1993: CGI Scripts and Early Server-Side Web Programming":</strong>
+            <a href="https://cybercultural.com/p/1993-cgi-scripts-and-early-server-side-web-programming/" target="_blank">cybercultural.com</a>
+            <br>
+            Used for explaining CGI's invention at NCSA, Rob McCool's role, and the significance of
+            server-side programming to early web interactivity.
+        </li>
+        <li>
+            <strong>Apache Software Foundation – "About the Apache HTTP Server Project":</strong>
+            <a href="https://httpd.apache.org/ABOUT_APACHE.html" target="_blank">httpd.apache.org</a>
+            <br>
+            Primary source for the history of Apache's development, the formation of the Apache Group,
+            release dates, and the origin of the name.
+        </li>
+        <li>
+            <strong>Wikipedia – Apache HTTP Server:</strong>
+            <a href="https://en.wikipedia.org/wiki/Apache_HTTP_Server" target="_blank">en.wikipedia.org/wiki/Apache_HTTP_Server</a>
+            <br>
+            Used for Apache market share statistics (2009 milestone of 100 million websites, current 23.7% share)
+            and the Apache name origin explanation.
+        </li>
+        <li>
+            <strong>Wikipedia – History of the World Wide Web:</strong>
+            <a href="https://en.wikipedia.org/wiki/History_of_the_World_Wide_Web" target="_blank">en.wikipedia.org/wiki/History_of_the_World_Wide_Web</a>
+            <br>
+            Used for context on the LAMP platform, Mosaic browser, and the browser wars era.
+        </li>
+        <li>
+            <strong>History of Information – "The Apache Group Releases the Apache HTTP Server":</strong>
+            <a href="https://historyofinformation.com/detail.php?id=2501" target="_blank">historyofinformation.com</a>
+            <br>
+            Used for the quote about Apache's September 2009 market share (54.48% of all websites and 66%
+            of the million busiest) and the dual origin of the name.
+        </li>
+    </ul>
+
+    <!-- MODERN SERVERS SOURCES (TOPIC 2) -->
+    <h2>Modern Web Servers &amp; Emerging Technologies (Additional Sources)</h2>
+    <ul>
+        <li>
+            <strong>Prehost.com – "HTTP/3: A Comprehensive Guide to the Latest Web Protocol":</strong>
+            <a href="https://prehost.com/http3/" target="_blank">prehost.com</a>
+            <br>
+            Used for the history and technical explanation of HTTP/3 and QUIC, Google's role in pioneering
+            the protocol, Cloudflare's adoption, and the 2024–2025 browser support status.
+        </li>
+        <li>
+            <strong>Cloudflare Learning – "What is a Reverse Proxy?":</strong>
+            <a href="https://www.cloudflare.com/learning/cdn/glossary/reverse-proxy/" target="_blank">cloudflare.com/learning</a>
+            <br>
+            Used for explaining reverse proxy functionality: load balancing, SSL termination, caching,
+            protection from attacks, and global server load balancing.
+        </li>
+        <li>
+            <strong>Serverless.direct – "The Future of Cloud Computing 2024 and Beyond":</strong>
+            <a href="https://www.serverless.direct/post/the-future-of-cloud-computing-in-2024-and-beyond-trends-and-predictions" target="_blank">serverless.direct</a>
+            <br>
+            Source for the serverless computing market size figure ($9.3 billion) and projected growth
+            rate (20.8% CAGR through 2028).
+        </li>
+        <li>
+            <strong>HostEase Blog – "The Future of Web Servers: Emerging Technologies and Trends":</strong>
+            <a href="https://www.hostease.com/blog/server/the-future-of-web-servers-emerging-technologies-and-trends-in-2023/" target="_blank">hostease.com</a>
+            <br>
+            Used for explanations of edge computing, serverless computing, and their application to
+            real-time use cases like gaming, streaming, and IoT devices.
+        </li>
+        <li>
+            <strong>W3Techs – Usage Statistics and Market Share of Web Servers, April 2026:</strong>
+            <a href="https://w3techs.com/technologies/overview/web_server" target="_blank">w3techs.com</a>
+            <br>
+            Primary source for current web server market share data: NGINX 32.7%, Cloudflare Server 27.7%,
+            Apache 23.7%, IIS 4.2%, LiteSpeed 4.0% (April 2026).
+        </li>
+    </ul>
+
+    <!-- KEY CONCEPTS SOURCES -->
+    <h2>Key Concepts (Additional Sources)</h2>
+    <ul>
+        <li>
+            <strong>Cloudflare Learning – "CDN SSL/TLS Security":</strong>
+            <a href="https://www.cloudflare.com/learning/cdn/cdn-ssl-tls-security/" target="_blank">cloudflare.com/learning</a>
+            <br>
+            Used for explaining TLS handshake timing (~110ms), TLS session resumption, and the relationship
+            between CDNs and SSL/TLS encryption optimization.
+        </li>
+        <li>
+            <strong>Cloudflare Learning – "What is DNS-based Load Balancing?":</strong>
+            <a href="https://www.cloudflare.com/learning/performance/what-is-dns-load-balancing/" target="_blank">cloudflare.com/learning</a>
+            <br>
+            Used for explanations of load balancing algorithms: round-robin, least-connections, weighted,
+            and dynamic routing based on server health.
+        </li>
+        <li>
+            <strong>MDN Web Docs – "HTTP Messages":</strong>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Messages" target="_blank">developer.mozilla.org</a>
+            <br>
+            Used for the technical structure of HTTP requests and responses, including start-lines, headers,
+            and body components in HTTP/1.1 and HTTP/2.
+        </li>
+        <li>
+            <strong>Turing School – "How the Web Works, HTTP Request/Response Cycle":</strong>
+            <a href="https://backend.turing.edu/module2/lessons/how_the_web_works_http" target="_blank">backend.turing.edu</a>
+            <br>
+            Used for HTTP method definitions (GET, POST, PUT, PATCH, DELETE) and the client-server
+            request-response model explanation.
+        </li>
+    </ul>
+
+    <!-- HOME PAGE SOURCES -->
+    <h2>Home Page &amp; General Background</h2>
+    <ul>
+        <li>
+            <strong>TechTarget – History of Server Hardware:</strong>
+            <a href="https://www.techtarget.com/searchdatacenter/feature/Dive-into-the-history-of-server-hardware" target="_blank">techtarget.com</a>
+            <br>
+            Used for historical facts about the first web server, Tim Berners-Lee's NeXT machine at CERN,
+            early server growth statistics (500 servers by 1993, 10,000 by 1994), and the development of
+            rack-mounted and blade servers.
+        </li>
+        <li>
+            <strong>Statista – Servers: Statistics &amp; Facts:</strong>
+            <a href="https://www.statista.com/topics/6277/servers/" target="_blank">statista.com</a>
+            <br>
+            Provided global server shipment data, including the figure of nearly 14 billion servers shipped
+            in 2023 and the industry's $90+ billion in revenue.
+        </li>
+        <li>
+            <strong>Zenarmor – What is a Web Server?</strong>
+            <a href="https://www.zenarmor.com/docs/network-basics/what-is-web-server" target="_blank">zenarmor.com</a>
+            <br>
+            Used for current web server market share statistics, including Apache's 27.6% and
+            Cloudflare's 22.8% share of all websites in 2025.
+        </li>
+        <li>
+            <strong>Turing School – How the Web Works, HTTP Request/Response Cycle:</strong>
+            <a href="https://backend.turing.edu/module2/lessons/how_the_web_works_http" target="_blank">backend.turing.edu</a>
+            <br>
+            Provided a clear explanation of the HTTP request-response cycle, HTTP verbs (GET, POST, PUT, DELETE),
+            and the client-server model used on the home page.
+        </li>
+        <li>
+            <strong>Wikipedia – Web Server:</strong>
+            <a href="https://en.wikipedia.org/wiki/Web_server" target="_blank">en.wikipedia.org/wiki/Web_server</a>
+            <br>
+            Referenced for general background on web server software features including virtual hosting,
+            content caching, bandwidth throttling, and HTTP/2 history.
+        </li>
+    </ul>
+
     <!-- CONCLUSION -->
     <h2>Summary</h2>
     <p>
@@ -102,5 +286,7 @@
     <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
 </footer>
 
+
+<script src="quiz.js"></script>
 </body>
 </html>
