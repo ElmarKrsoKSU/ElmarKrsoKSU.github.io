@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Web Servers</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -9,8 +10,31 @@
 <body>
 
 <header>
-    <h1>Modern Web Servers & The Future</h1>
-    <nav>
+    <div class="header-inner">
+        <!-- logo in the top left -->
+        <a href="index.html" class="site-logo">
+            Elmar<span class="sep">|</span><span class="org">KSU</span>
+        </a>
+
+        <!-- three-line menu button, only shows on mobile -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
+        <!-- navigation links across the top -->
+        <nav id="desktopNav">
+            <a href="index.html">Home</a>
+            <a href="topic1.html">History</a>
+            <a href="topic2.html" class="active">Modern Servers</a>
+            <a href="concepts.html">Key Concepts</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="references.html">References</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+
+    <!-- dropdown menu for mobile screens -->
+    <div class="mobile-nav" id="mobileNav">
         <a href="index.html">Home</a>
         <a href="topic1.html">History</a>
         <a href="topic2.html" class="active">Modern Servers</a>
@@ -18,108 +42,226 @@
         <a href="quiz.html">Quiz</a>
         <a href="references.html">References</a>
         <a href="about.html">About</a>
-    </nav>
+    </div>
 </header>
 
 <main>
-
-    <!-- INTRO -->
-    <h2>Introduction</h2>
+    <!-- cloud computing overview -->
+    <h2>Moving to the Cloud</h2>
     <p>
-        Modern web servers have evolved significantly from early systems that only delivered static content. Today’s
-        servers are designed to handle millions of users, process dynamic applications, and operate efficiently in
-        distributed environments. Performance, scalability, and security are now the primary focus of modern web server
-        architecture.
+        For the first 20 or so years of the web, running a server meant owning actual hardware.
+        You bought a computer, put it in a rack, plugged it in, and hoped nothing broke.
+        If you needed more power you bought a bigger machine. If traffic spiked you just
+        kind of dealt with it or went down.
+    </p>
+    <p>
+        Cloud platforms changed that completely. Services like <strong>Amazon Web Services (AWS)</strong>,
+        <strong>Microsoft Azure</strong>, and <strong>Google Cloud</strong> let you rent
+        server capacity by the hour. You can spin up ten extra servers on a Friday night
+        when traffic is high and turn them off Saturday morning when things calm down.
+        No hardware, no upfront cost, no wasted machines sitting idle.
+    </p>
+    <p>
+        This also made things more affordable for smaller projects. A startup can now
+        launch a web app without buying any physical equipment. They just pay for whatever
+        compute time they actually use.
     </p>
 
-    <!-- NGINX & PERFORMANCE -->
-    <h2>High-Performance Architecture</h2>
+    <!-- cloud data center photo -->
+    <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop" alt="Modern cloud data center infrastructure" class="img-inline">
+
+    <!-- how modern servers handle lots of traffic -->
+    <h2>How Modern Servers Handle Traffic</h2>
     <p>
-        One of the biggest advancements in modern web servers is the shift from process-based models to event-driven,
-        asynchronous architectures. Servers like NGINX use this approach to handle thousands of simultaneous connections
-        using fewer resources.
+        The old way Apache worked was to create a new process for every incoming connection.
+        That worked fine for a few hundred users but fell apart at scale. Modern servers
+        like NGINX use what is called an <strong>event-driven</strong> approach instead.
+    </p>
+    <p>
+        With event-driven servers, a small number of worker processes each handle thousands
+        of connections at the same time. They just sit there waiting for something to happen
+        (a request coming in, data being ready to send) and respond to it without blocking
+        everything else. Apache might use several megabytes of RAM per connection. NGINX
+        can handle thousands of connections in that same amount of memory. That is a big
+        difference once you are dealing with a popular site.
     </p>
 
+    <!-- spreading traffic across multiple servers -->
+    <h2>Load Balancing</h2>
     <p>
-        This design allows servers to remain responsive even under heavy traffic, making them ideal for high-demand
-        applications such as streaming platforms, online stores, and social media websites.
+        Even the fastest server has limits. Load balancing is the solution: instead of
+        sending all traffic to one machine, a <strong>load balancer</strong> sits out in
+        front and spreads requests across a group of servers.
+    </p>
+    <p>
+        There are a few ways load balancers decide where to send traffic. Round-robin just
+        cycles through the servers one by one. Least-connections sends the next request
+        to whichever server currently has the fewest active connections. Weighted routing
+        gives more traffic to the more powerful machines in the pool.
+    </p>
+    <p>
+        Load balancing also helps with reliability. If one server in the group goes down,
+        the load balancer stops sending traffic to it and splits everything among the others.
+        Users usually never notice. Cloudflare does this across hundreds of data centers
+        around the world, automatically routing users to whichever one is physically closest.
     </p>
 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Nginx_logo.svg" alt="NGINX Logo">
-
-    <!-- CLOUD -->
-    <h2>Cloud Computing</h2>
+    <!-- what a reverse proxy does -->
+    <h2>Reverse Proxies</h2>
     <p>
-        Modern web servers are commonly hosted in cloud environments rather than on physical machines. Cloud platforms
-        such as Amazon Web Services (AWS), Microsoft Azure, and Google Cloud provide scalable infrastructure that can
-        grow or shrink based on demand.
+        A <strong>reverse proxy</strong> is a server that sits in front of your actual
+        web servers and handles requests before they ever get to the origin. From the
+        outside it just looks like your website. Behind the scenes it is doing a lot of work.
+    </p>
+    <p>
+        Reverse proxies are useful for a few reasons. They hide the real IP addresses of
+        your servers so attackers cannot target them directly. They can handle SSL encryption
+        and decryption so the backend servers do not have to. They can also cache common
+        responses so the same file does not have to be generated or fetched over and over.
+        NGINX is very commonly used as a reverse proxy, and Cloudflare's whole network
+        basically works this way at a global scale.
     </p>
 
+    <!-- content delivery networks -->
+    <h2>Content Delivery Networks (CDNs)</h2>
     <p>
-        This flexibility allows companies to handle traffic spikes without downtime and reduces the cost of maintaining
-        physical hardware. Cloud-based servers also support global deployment, improving performance for users worldwide.
+        A <strong>CDN</strong> is a network of servers spread around the world that stores
+        cached copies of your content. Without one, everyone hits your main server no matter
+        where they are. If your server is in New York and someone is loading your site from
+        Japan, that is a long round trip for every file.
+    </p>
+    <p>
+        With a CDN, that person in Japan connects to a CDN server nearby and gets a cached
+        copy of the page in a fraction of the time. CDNs are especially helpful for static
+        stuff like images, stylesheets, and JavaScript files that do not change between users.
+        Cloudflare, Akamai, and Amazon CloudFront are the big names. Cloudflare alone
+        covers over 300 cities and handles almost 28% of all websites as of 2026.
     </p>
 
-    <img src="data:image/jpeg;base64,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" alt="Cloud Computing">
+    <!-- network cables photo -->
+    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&auto=format&fit=crop" alt="Network cables in a data center" class="img-inline">
 
-    <!-- FEATURES -->
-    <h2>Key Features of Modern Web Servers</h2>
-    <ul>
-        <li><strong>Caching:</strong> Stores frequently accessed data to improve speed and reduce server load.</li>
-        <li><strong>Load Balancing:</strong> Distributes traffic across multiple servers to prevent overload.</li>
-        <li><strong>Compression:</strong> Reduces file sizes to improve load times.</li>
-        <li><strong>HTTPS Encryption:</strong> Secures communication between users and servers.</li>
-        <li><strong>Reverse Proxy:</strong> Routes requests and improves security and performance.</li>
-    </ul>
-
-    <!-- COMPARISON TABLE -->
-    <h2>Comparison of Popular Web Servers</h2>
-    <table>
-        <tr>
-            <th>Server</th>
-            <th>Architecture</th>
-            <th>Strength</th>
-        </tr>
-        <tr>
-            <td>Apache</td>
-            <td>Process-Based</td>
-            <td>Flexible and customizable</td>
-        </tr>
-        <tr>
-            <td>NGINX</td>
-            <td>Event-Driven</td>
-            <td>High performance and scalability</td>
-        </tr>
-        <tr>
-            <td>LiteSpeed</td>
-            <td>Event-Driven</td>
-            <td>Fast and efficient for high traffic</td>
-        </tr>
-    </table>
-
-    <!-- FUTURE -->
-    <h2>The Future of Web Servers</h2>
+    <!-- Docker and microservices -->
+    <h2>Containers and Microservices</h2>
     <p>
-        The future of web servers is focused on improving speed, efficiency, and global accessibility. New technologies
-        such as HTTP/3 and QUIC are designed to reduce latency and improve connection reliability.
+        Old-school web apps were usually one big program that handled everything: login,
+        search, checkout, email, all of it. The problem was that when you needed to update
+        one part, you had to redeploy the whole thing. And if one part had a bug and crashed,
+        it could take the whole app down.
+    </p>
+    <p>
+        The modern approach is to break things up into <strong>microservices</strong>: small
+        independent pieces that each do one job. Login lives on its own server, search on
+        another, checkout on another. They talk to each other over the network. If one goes
+        down, the others keep running.
+    </p>
+    <p>
+        <strong>Docker</strong> and <strong>Kubernetes</strong> are the tools most people
+        use for this. Docker lets you package a service with all its dependencies into a
+        container that runs the same way everywhere. Kubernetes manages those containers
+        across a cluster of machines and handles scaling them up and down automatically.
     </p>
 
+    <!-- containerization photo -->
+    <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&auto=format&fit=crop" alt="Software deployment and containerization">
+
+    <!-- the newest version of HTTP -->
+    <h2>HTTP/3 and QUIC</h2>
     <p>
-        Edge computing is another major trend, where servers are placed closer to users to reduce response times.
-        This is especially important for applications that require real-time performance, such as gaming and streaming.
+        HTTP has gone through a few versions over the years. HTTP/1.1 was the standard for
+        a long time. HTTP/2 (2015) made things faster by letting multiple requests share one
+        connection. But both of those run over TCP, which still had some slowness built in,
+        especially on mobile networks that drop packets a lot.
+    </p>
+    <p>
+        <strong>HTTP/3</strong>, finalized in 2022, switches from TCP to a protocol called
+        <strong>QUIC</strong> that runs over UDP. QUIC was designed by Google starting around
+        2012. It cuts out some of the back-and-forth setup steps that TCP requires, handles
+        dropped packets more smoothly, and encrypts everything by default. By 2024-2025 all
+        the major browsers supported it and a lot of web traffic was already using it without
+        most users knowing.
     </p>
 
+    <!-- serverless computing -->
+    <h2>Serverless Computing</h2>
     <p>
-        Serverless computing is also becoming more popular. In this model, developers do not manage servers directly.
-        Instead, cloud providers automatically handle infrastructure, allowing developers to focus on writing code.
+        Serverless takes the "do not manage servers" idea even further. In a serverless setup,
+        you just write a function and deploy it to a cloud provider. The provider handles
+        everything else: running it, scaling it, keeping it available. You only get charged
+        for the time your function actually runs. If nobody calls it for an hour, you pay
+        nothing for that hour.
+    </p>
+    <p>
+        AWS Lambda, Google Cloud Functions, and Azure Functions are the main options. The
+        serverless market hit $9.3 billion in 2024 and is growing at around 20% per year,
+        which shows how quickly people are moving to this model.
     </p>
 
-    <!-- CONCLUSION -->
-    <h2>Conclusion</h2>
+    <!-- edge computing -->
+    <h2>Edge Computing</h2>
     <p>
-        Modern web servers are powerful, scalable, and essential for today’s internet. With continuous advancements in
-        cloud computing, networking, and performance optimization, web servers will continue to evolve to meet the
-        growing demands of users and applications worldwide.
+        Edge computing pushes things even further out toward the user. Instead of processing
+        data in a central data center, edge computing runs code at servers that are physically
+        close to whoever is using the app. This matters a lot for things that need very fast
+        responses, like real-time gaming, live video, or self-driving car systems.
+    </p>
+    <p>
+        Products like Cloudflare Workers and AWS Lambda@Edge let developers deploy code that
+        runs at these edge locations around the globe. For the end user it just feels fast.
+    </p>
+
+    <!-- table comparing web servers and their market share -->
+    <h2>Web Server Market Share (April 2026)</h2>
+    <div class="table-wrap">
+        <table>
+            <tr>
+                <th>Server</th>
+                <th>Architecture</th>
+                <th>Main Strength</th>
+                <th>Market Share</th>
+            </tr>
+            <tr>
+                <td>NGINX</td>
+                <td>Event-Driven</td>
+                <td>High traffic, reverse proxy, load balancing</td>
+                <td>~32.7%</td>
+            </tr>
+            <tr>
+                <td>Cloudflare</td>
+                <td>Distributed CDN/Edge</td>
+                <td>Global reach, DDoS protection, security</td>
+                <td>~27.7%</td>
+            </tr>
+            <tr>
+                <td>Apache</td>
+                <td>Process/Event-Based</td>
+                <td>Flexibility, huge module library</td>
+                <td>~23.7%</td>
+            </tr>
+            <tr>
+                <td>Microsoft IIS</td>
+                <td>Process-Based</td>
+                <td>Windows and .NET integration</td>
+                <td>~4.2%</td>
+            </tr>
+            <tr>
+                <td>LiteSpeed</td>
+                <td>Event-Driven</td>
+                <td>Fast, drop-in Apache replacement</td>
+                <td>~4.0%</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- wrap up -->
+    <h2>Where Things Are Heading</h2>
+    <p>
+        Web server technology has come a long way from single physical boxes to globally
+        distributed cloud networks. The trend is clearly toward less manual management,
+        faster delivery closer to the user, and smarter automatic scaling. HTTP/3 is still
+        being rolled out everywhere, edge computing is growing fast, and serverless is
+        becoming a default choice for a lot of new projects. It is a pretty interesting
+        time to be working with any of this stuff.
     </p>
 
 </main>
@@ -129,5 +271,7 @@
     <a href="https://ksuweb.github.io/IT3203/">Course Website</a>
 </footer>
 
+
+<script src="quiz.js"></script>
 </body>
 </html>
